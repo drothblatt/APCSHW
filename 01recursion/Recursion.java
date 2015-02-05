@@ -3,7 +3,7 @@ public class Recursion implements hw1{
     public String name(){
 	return "Rothblatt,David";
     }
-
+    // must throw error for negatives. will do later.
     public int fact(int n){
 	if (n <= 1){ // 0! and 1! are both equal to 1
 	    return 1;
@@ -20,9 +20,9 @@ public class Recursion implements hw1{
 	}
     }
 
-    public double sqrt(double n){
+    public double sqrt(double n){ // still working on this
 	double guess = 1;
-	guess =  ( n / guess + guess) / 2;
+	guess =  ( n / guess + guess) / 2; // as suggested by Mr. K
 	return n;
     }
 
