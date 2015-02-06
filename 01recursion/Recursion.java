@@ -3,27 +3,31 @@ public class Recursion implements hw1{
     public String name(){
 	return "Rothblatt,David";
     }
-    // must throw error for negatives. will do later.
 
     // 1.21: factorial. 
-    public int fact(int n){
-	if (n <= 1){ // 0! and 1! are both equal to 1
+    public int fact(int n) throws IllegalArgumentException{
+	if (n < 0){   
+	    throw new IllegalArgumentException();
+	} else if (n <= 1){ // 0! and 1! are both equal to 1
 	    return 1;
 	}
 	return n * fact(n-1);
     }
     
     // 1.22: fibonacci. 
-    public int fib(int n){
-	if (n <= 1) {
+    public int fib(int n) throws IllegalArgumentException{
+	if (n < 0){   
+	    throw new IllegalArgumentException();
+	}else if (n <= 1) {
 	    return n;
 	}
 	return fib(n-2) + fib(n-1);
     }
 
     // 1.23: sqrt. 
-    public double sqrt(double n){ 
+    public double sqrt(double n) throws IllegalArgumentException{ 
 	if (n < 0){   
+	    throw new IllegalArgumentException();
 	}
 	double guess = n/2;
 	return sqrtHelper(n,guess);
@@ -65,12 +69,14 @@ public class Recursion implements hw1{
 	System.out.println("r.sqrt(25):  expecting 5.0... " + r.sqrt(25));
 	System.out.println("r.sqrt(64):  expecting 8.0... " + r.sqrt(64));
 	System.out.println("r.sqrt(100): expecting 10.0... " + r.sqrt(100));
-	System.out.println("r.sqrt(169): expecting 13.0... " + r.sqrt(169) + "\n\n");
+	System.out.println("r.sqrt(169): expecting 13.0... " + r.sqrt(169) + "\n");
 
-
-
-
+	System.out.println("Negative Inputs:\n");
+	System.out.println("r.fact(-5)..."); // throws exception - good
+	//System.out.println( r.fact(-5));
+	System.out.println("r.fib(-17)..."); // throws exception - good
+	//System.out.println( r.fib(-17));
+	System.out.println("r.sqrt(-100)..."); // throws exception - good
+	System.out.println( r.sqrt(-100));
     }
-
-
 }
