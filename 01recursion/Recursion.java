@@ -5,6 +5,7 @@ public class Recursion implements hw1{
     }
     // must throw error for negatives. will do later.
 
+    // 1.21: factorial. 
     public int fact(int n){
 	if (n <= 1){ // 0! and 1! are both equal to 1
 	    return 1;
@@ -12,6 +13,7 @@ public class Recursion implements hw1{
 	return n * fact(n-1);
     }
     
+    // 1.22: fibonacci. 
     public int fib(int n){
 	if (n <= 1) {
 	    return n;
@@ -19,6 +21,7 @@ public class Recursion implements hw1{
 	return fib(n-2) + fib(n-1);
     }
 
+    // 1.23: sqrt. 
     public double sqrt(double n){ 
 	if (n < 0){   
 	}
@@ -38,7 +41,8 @@ public class Recursion implements hw1{
 	    return sqrtHelper(n, guess);
 	}
     }
-
+    
+    // checking
     public static void main(String[]args){
 	Recursion r = new Recursion();
 	System.out.println("\n01Recursion\n");
