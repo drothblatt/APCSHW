@@ -31,38 +31,38 @@ public class KnightsTour{
 	//build your knights tour here...
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j < board.length; j++){
-		ans += board[i][j] + " ";
+		ans += board[i][j] + "  ";
 	    }
 	    ans += "\n";
 	}
 	return ans; 
-	//return hide + go(0,0) + ans + "\n" + show;
+        //return hide + clear + go(0,0) + ans + "\n" + show;
     }
 
     public KnightsTour(int size){
 	board = new int[size][size];
 	for (int i = 0; i < board.length; i++){
 	    for (int j = 0; j < board.length; j++){
-		board[i][j] = -1;
+		board[i][j] = 0;
 	    }
 	}
     }
 
-    public void solve(){ // same algo both ways 
-	solve(0,0);
+    public boolean solve(){ // same algo both ways 
+	return solve(0,0,1);
     }
 
 
-    public void solve(int startx, int starty){ // same algo both ways 
-	solve(startx, starty, 0);			
+    public boolean solve(int startx, int starty){ // same algo both ways 
+	return solve(startx, starty, 1);			
     }
 
 
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	System.out.println(this); // take out later
-	wait(20); // take out later
+	//System.out.println(this); // take out later
+	//wait(20); // take out later
 	
 	if ( x < 0 || x >= board.length || y < 0
 	     || y >= board[0].length) {
@@ -70,11 +70,11 @@ public class KnightsTour{
 	
 	}
 
-	if ( board[x][y] == 0 && currentMoveNumber != 0) {
+	if (currentMoveNumber == board.length*board[0].length) {
 	    return true;
 	}
 	
-	if ( board[x][y] == -1 ) {
+	if ( board[x][y] == 0 ) {
 	    board[x][y] = currentMoveNumber;
 	    if (solve(x+1,y+2,currentMoveNumber++) ||
 		    solve(x+1,y-2,currentMoveNumber++) ||
@@ -87,21 +87,25 @@ public class KnightsTour{
 		){
 		return true;
 	    }
-	    board[x][y] = -1;
+	    board[x][y] = 0;
 	}
 	return false;
     }
 
     public static void main(String[]args){
- 	KnightsTour kt1 = new KnightsTour(1);
-	//System.out.println(kt1.solve(0,0,0));
-	KnightsTour kt2 = new KnightsTour(2);
-	//System.out.println(kt2.solve(0,0,0));
-	KnightsTour kt3 = new KnightsTour(3);
-	//System.out.println(kt3.solve(0,0,0));
+	/*
+	KnightsTour[] KTs= new KnightsTour[5];
+	for (int i = 0; i < 5; i++){
+	    KTs[i] = new KnightsTour(i+1);
+	}
+	*/
+ 
+
 	KnightsTour kt5 = new KnightsTour(5);
-	System.out.println(kt5.solve(0,0,0));
-	KnightsTour kt8 = new KnightsTour(8);
-	System.out.println(kt8 /* kt8.solve(0,0,0) */);
+	if (kt5.solve()){
+	    System.out.println(kt5);
+	} else {
+	    System.out.println("No Solution");
+	}
     }
 }
