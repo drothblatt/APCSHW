@@ -61,8 +61,8 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	//System.out.println(this); // take out later
-	//wait(20); // take out later
+	System.out.println(this); // take out later
+	wait(20); // take out later
 	
 	if ( x < 0 || x >= board.length || y < 0
 	     || y >= board[0].length) {
