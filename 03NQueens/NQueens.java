@@ -7,8 +7,9 @@ public class NQueens {
     final static String show =  "\033[?25h";
 
     //instance variable
-    private int[][]board;
+    private char[][]board;
 
+    private int q;
 
     //terminal specific character to move the cursor
     private String go(int x,int y){
@@ -26,10 +27,22 @@ public class NQueens {
 
     public NQueens(int size){
 	board = new int[size][size];
+	q = board.length;
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board[0].length; j++){
+		board[i][j] = 'x';
+	    }
+	}
     }
 
     public NQueens(){
 	board = new int[8][8];
+	q = board.length;
+	for(int i = 0; i < board.length; i++){
+	    for(int j = 0; j < board[0].length; j++){
+		board[i][j] = 'x';
+	    }
+	}
     }
 
     public String toString(){
@@ -50,17 +63,52 @@ public class NQueens {
     }
 
     public boolean solve(){
-	return solve(0,0);
+	return solve(0, q);
     }
     
     public boolean solve(int x){
-	return solve(0,x);
+	if ( x > 0 && x < board.length ) { // place a queen at col X in row 0
+	    board[0][x] = 'Q';
+	    return solve(1, q-1);
+	} 
+	return false;
     }
 
-    public boolean solve(int r, int c){
+    public boolean solve(int r, int nQueens){
+	if (r == board.length){
+	    return true;
+	} 
+
+	for (int c = 0; c < size; c++) {
+	    if (validSpot(r,c)){
+		board[r][c] = 'Q'; 
+		if ( solve(r+1, nQueens-1) ) {
+		    return true;
+		}
+		board[r][c] = 'x';
+	    }
+	}
+	return false;
+    }
+
+    public boolean validSpot(int row, int col){
+	for (int c = 0; c < q; c++) {
+	    if (board[row][c] == 'Q'){
+		return false;
+	    }
+	}
+
+	for (int r = 0; r < q; r++){
+	    if (board[r][col] == 'Q'){
+		return false;
+	    }
+	}
+
+	int r = 0;
+	int c = 0;
 	
+	while ( r < q && c < q ){
+	}
     }
-
-
 
 }
