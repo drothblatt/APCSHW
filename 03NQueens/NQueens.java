@@ -26,7 +26,7 @@ public class NQueens {
 
 
     public NQueens(int size){
-	board = new int[size][size];
+	board = new char[size][size];
 	q = board.length;
 	for(int i = 0; i < board.length; i++){
 	    for(int j = 0; j < board[0].length; j++){
@@ -36,7 +36,7 @@ public class NQueens {
     }
 
     public NQueens(){
-	board = new int[8][8];
+	board = new char[8][8];
 	q = board.length;
 	for(int i = 0; i < board.length; i++){
 	    for(int j = 0; j < board[0].length; j++){
@@ -75,11 +75,14 @@ public class NQueens {
     }
 
     public boolean solve(int r, int nQueens){
+	//System.out.println(this);
+	//wait(20);
+
 	if (r == board.length){
 	    return true;
 	} 
 
-	for (int c = 0; c < size; c++) {
+	for (int c = 0; c < q; c++) {
 	    if (validSpot(r,c)){
 		board[r][c] = 'Q'; 
 		if ( solve(r+1, nQueens-1) ) {
@@ -91,7 +94,7 @@ public class NQueens {
 	return false;
     }
 
-    public boolean validSpot(int row, int col){
+    public boolean validSpot(int row, int col){	
 	for (int c = 0; c < q; c++) {
 	    if (board[row][c] == 'Q'){
 		return false;
@@ -103,12 +106,25 @@ public class NQueens {
 		return false;
 	    }
 	}
-
-	int r = 0;
-	int c = 0;
 	
-	while ( r < q && c < q ){
+	int r, c; 
+
+	if ( row < col ){
+	    r = 0; 
+	    c = col-row;
+	} else {
+	    r = row - col; 
+	    c = 0;
 	}
+
+	while ( r < q && c < q ){
+	    if (board[r][c] == 'Q'){
+		return false;
+	    }
+	    r++;
+	    c++;
+	}
+	return true;
     }
 
 }
