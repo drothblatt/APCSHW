@@ -63,7 +63,7 @@ public class NQueens {
     }
 
     public boolean solve(){
-	return solve(0);
+	return solve(0,q);
     }
     
     public boolean solve(int x){
@@ -76,9 +76,9 @@ public class NQueens {
 
     public boolean solve(int r, int nQueens){
 	System.out.println(this);
-	wait(25);
+	wait(30);
 
-	if (r == board.length){
+	if (nQueens == 0){
 	    return true;
 	} 
 
