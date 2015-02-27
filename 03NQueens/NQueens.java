@@ -75,8 +75,8 @@ public class NQueens {
     }
 
     public boolean solve(int r, int nQueens){
-	System.out.println(this);
-	wait(30);
+	//System.out.println(this);
+	//wait(30);
 
 	if (nQueens == 0){
 	    return true;
