@@ -44,11 +44,11 @@ public class KnightsTour{
     }
 
     public String name(){
-	return "Rothblatt,David";
+	return "rothblatt.david";
     }
 
     public boolean solve(){ // same algo both ways 
-	return solve(0,0,1);
+	return solve(0,0);
     }
 
 
@@ -60,8 +60,8 @@ public class KnightsTour{
 
 		
     public boolean solve(int x,int y,int currentMoveNumber){
-	//System.out.println(this); // take out later
-	//wait(1); // take out later
+	//System.out.println(this);
+	//wait(30);
 	
 	if ( x < 0 || x >= board.length || y < 0
 	     || y >= board[0].length) {
@@ -69,21 +69,20 @@ public class KnightsTour{
 	
 	}
 
-	if (currentMoveNumber > board.length*board[0].length) {
-	    board[x][y] = currentMoveNumber;
+	if (currentMoveNumber == board.length*board[0].length + 1) {
 	    return true;
 	}
 	
 	if ( board[x][y] == 0 ) {
 	    board[x][y] = currentMoveNumber;
 	    if (solve(x+1,y+2,currentMoveNumber+1) ||
-		    solve(x+1,y-2,currentMoveNumber+1) ||
-		    solve(x-1,y+2,currentMoveNumber+1) ||
-		    solve(x-1,y-2,currentMoveNumber+1) ||
-		    solve(x+2,y+1,currentMoveNumber+1) ||
-		    solve(x+2,y-1,currentMoveNumber+1) ||
-		    solve(x-2,y+1,currentMoveNumber+1) ||
-		    solve(x-2,y-1,currentMoveNumber+1)
+		solve(x+1,y-2,currentMoveNumber+1) ||
+		solve(x-1,y+2,currentMoveNumber+1) ||
+		solve(x-1,y-2,currentMoveNumber+1) ||
+		solve(x+2,y+1,currentMoveNumber+1) ||
+		solve(x+2,y-1,currentMoveNumber+1) ||
+		solve(x-2,y+1,currentMoveNumber+1) ||
+		solve(x-2,y-1,currentMoveNumber+1)
 		){
 		return true;
 	    }
@@ -94,14 +93,6 @@ public class KnightsTour{
 
     public static void main(String[]args){
 	KnightsTour kt = new KnightsTour(5);
-	if (args.length > 0){
-	    try{
-		kt = new KnightsTour(Integer.parseInt(args[0]));
-	    } catch(IllegalArgumentException e){
-		System.out.println("You goofed. Redo");
-	    }
-	} 
-
 	if (kt.solve()){
 	    System.out.println(kt);
 	} else {
