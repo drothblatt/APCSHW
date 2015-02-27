@@ -63,12 +63,11 @@ public class NQueens {
     }
 
     public boolean solve(){
-	board[0][0] = 'Q';
-	return solve(1, q-1);
+	return solve(0);
     }
     
     public boolean solve(int x){
-	if ( x > 0 && x < board.length ) { // place a queen at col X in row 0
+	if ( x >= 0 && x < board.length ) { // place a queen at col X in row 0
 	    board[0][x] = 'Q';
 	    return solve(1, q-1);
 	} 
@@ -76,8 +75,10 @@ public class NQueens {
     }
 
     public boolean solve(int r, int nQueens){
+	System.out.println(this);
+	wait(25);
 
-	if (nQueens == 0){
+	if (r == board.length){
 	    return true;
 	} 
 
@@ -94,36 +95,15 @@ public class NQueens {
     }
 
     public boolean validSpot(int row, int col){	
-	for (int c = 0; c < q; c++) {
-	    if (board[row][c] == 'Q'){
-		return false;
-	    }
-	}
-
+	// checks rows, columns, and diagonals for any Qs in the way
 	for (int r = 0; r < q; r++){
-	    if (board[r][col] == 'Q'){
-		return false;
+	    for (int c = 0; c < q; c++){
+		if ( ( (r == row) || (c == col) || (Math.abs(r - row) == Math.abs(c-col)) )
+		     && (board[r][c] == 'Q') ){
+		    return false;
+		}
 	    }
-	}
-	
-	int r, c; 
-
-	if ( row < col ){
-	    r = 0; 
-	    c = col-row;
-	} else {
-	    r = row - col; 
-	    c = 0;
-	}
-
-	while ( r < q && c < q ){
-	    if (board[r][c] == 'Q'){
-		return false;
-	    }
-	    r++;
-	    c++;
 	}
 	return true;
     }
-
 }
