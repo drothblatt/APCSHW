@@ -90,7 +90,7 @@ public class KnightsTour{
 	}
 	return false;
     }
-
+    /* 
     public static void main(String[]args){
 	KnightsTour kt = new KnightsTour(5);
 	if (kt.solve()){
@@ -99,4 +99,5 @@ public class KnightsTour{
 	    System.out.println("No Solution");
 	}
     }
+    */
 }
