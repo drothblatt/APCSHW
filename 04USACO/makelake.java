@@ -1,44 +1,30 @@
-public class Makelake{
+import java.util.*;
+import java.io.*;
+
+public class makelake{
     private int R, C, E, N;
     private int[][] pasture;
     private int[][] stomp;
     
 
-    public Makelake(String filename){
-	
+    public makelake(String filename){
 	try{
 	    Scanner in = new Scanner(new File(filename));
-	    //keep reading next line
-	    int input = 1;
-	    while(in.hasNextInt()){
-		if (input == 1) {R = in.nextInt(); }
-		else if (input == 2) {C = in.nextInt();}
-		else if (input == 3) {E = in.nextInt();}
-		else if (input == 4) {N = in.nextInt();}
-		pasture = new int[R][C];
-		while (input <= R*C + 4 && in.hasNextInt()){
-		    for (int r = 0; r < R; r++){
-			for (int c = 0; c < C; c++){
-			    pasture[r][c] = in.nextInt();
-			}
-		    }
+	    R = in.nextInt();
+	    C = in.nextInt();
+	    E = in.nextInt();
+	    N = in.nextInt();
+	    pasture = new int[R][C];
+	    for (int i = 0; i < R; i++){
+		for (int j = 0; j < C; j++){
+		    pasture[i][j] = in.nextInt();
 		}
-		
-		    
-
-
-		input++;
-		
-		/*
-		String line= in.nextLine();
-		if(maxy==0){
-		    //calculate width of the maze
-		    maxx=line.length();
+	    }
+	    stomp = new int[N][3];
+	    for (int i = 0; i < N; i++){
+		for (int j = 0; j < 3; j++){
+		    stomp[i][j] = in.nextInt();
 		}
-		//every new line add 1 to the height of the maze
-		maxy++;
-		ans+=line;
-		*/
 	    }
 	}
 	catch(Exception e){
@@ -72,8 +58,8 @@ public class Makelake{
 
     public int maxNum(int R_s, int C_s){
 	int max = 0; 
-	for (int r = R_s; r < R_s +3; r++){
-	    for (int c = C_s; c < C_s +3; c++){
+	for (int r = R_s; r <= R_s + 2; r++){
+	    for (int c = C_s; c <= C_s + 2; c++){
 		if (pasture[r][c] > max){
 		    max = pasture[r][c];
 		}
@@ -96,9 +82,38 @@ public class Makelake{
 	return total*72*72;
     }
 
+    public String pString(){
+	String ans = "";
+	for (int i = 0; i < pasture.length; i++){
+	    for (int j = 0; j < pasture[0].length; j++){
+		ans += " " + pasture[i][j] + " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
+    public String bString(){
+	return ""+ R + " " + C + " "+ E + " " + N + "\n";
+    }
+    
+    public String sString(){
+	String ans = "";
+	for (int i = 0; i < stomp.length; i++){
+	    for (int j = 0; j < stomp[0].length; j++){
+		ans += " " + stomp[i][j] + " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
+
+	
     public static void main(String[]args){
-	Makelake a = new Makelake();
-	System.out.println(a.getVolume());
+	makelake a = new makelake("makelake.txt");
+	System.out.println(a.bString() + a.pString + a.sString()); //checking if input is good
+	//System.out.println(a.getVolume());
     }
     
 		
