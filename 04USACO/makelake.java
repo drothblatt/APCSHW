@@ -94,7 +94,7 @@ public class makelake{
     }
 
     public String bString(){
-	return ""+ R + " " + C + " "+ E + " " + N + "\n";
+	return " "+ R + " " + C + " "+ E + " " + N + "\n";
     }
     
     public String sString(){
@@ -112,7 +112,7 @@ public class makelake{
 	
     public static void main(String[]args){
 	makelake a = new makelake("makelake.txt");
-	System.out.println(a.bString() + a.pString + a.sString()); //checking if input is good
+	System.out.println(a.bString() + a.pString() + a.sString()); //checking if input is good
 	//System.out.println(a.getVolume());
     }
     
