@@ -41,8 +41,8 @@ public class makelake{
 	    C_s = x[i][1];
 	    D_s = x[i][2];
 	    int target = getTarget(D_s,R_s,C_s);
-	    for (int r = R_s; r < R_s +3; r++){
-		for (int c = C_s; c < C_s +3; c++){
+	    for (int r = R_s-1; r < R_s +2; r++){
+		for (int c = C_s-1; c < C_s +2; c++){
 		    if (pasture[r][c] > target){
 			pasture[r][c] = target;
 		    }
@@ -58,8 +58,8 @@ public class makelake{
 
     public int maxNum(int R_s, int C_s){
 	int max = 0; 
-	for (int r = R_s; r <= R_s + 2; r++){
-	    for (int c = C_s; c <= C_s + 2; c++){
+	for (int r = R_s-1; r < R_s + 2; r++){
+	    for (int c = C_s-1; c < C_s + 2; c++){
 		if (pasture[r][c] > max){
 		    max = pasture[r][c];
 		}
@@ -112,8 +112,8 @@ public class makelake{
 	
     public static void main(String[]args){
 	makelake a = new makelake("makelake.txt");
-	System.out.println(a.bString() + a.pString() + a.sString()); //checking if input is good
-	//System.out.println(a.getVolume());
+	//System.out.println(a.bString() + a.pString() + a.sString());
+	System.out.println(a.getVolume());
     }
     
 		
