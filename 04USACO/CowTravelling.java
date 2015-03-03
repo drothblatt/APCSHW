@@ -79,6 +79,9 @@ public class CowTravelling{
 	CowTravelling moo = new CowTravelling("cow1.txt");
 	System.out.println(moo + "\n\nPossible Ways: " + moo.moveCow());
 	// should work
+	// System.out.println(moo + "\n\nPossible Ways: " + moo.moveCow());
+	//
+
     }
 
 }
