@@ -29,9 +29,34 @@ public class CowTravelling{
 	    System.exit(0);
 	}
     }
+
+    public String toString(){
+	String ans = "\n";
+	for (int i = 0; i < field.length; i++){
+	    for (int j = 0; c < field[0].length; j++){
+		ans += map[r][c] + " ";
+	    }
+	    ans += "\n";
+	}
+	return ans;
+    }
+
     
-    public int moveCow(){}
+    public int moveCow(){
+	return moveCowH(C1, R1, 0);
+    }
 
+    public int moveCowH(int c, int r, int t){
+	if (  c < 0  || r < 0  || c >= field[0].length || r >= field.length  ){
+	    return 0;
+	}
 
+	if (field[r][c] == '*'){
+	    return 0;
+	}
+	
+	return travel(x+1, y, t+1) + travel(x-1, y, t+1) +
+	       travel(x, y+1, t+1) + travel(x, y+1, t+1);
+    }
 
 }
