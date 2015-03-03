@@ -30,11 +30,17 @@ public class CowTravelling{
 	}
     }
 
-    public String toString(){
+    public String toString(){ 
 	String ans = "\n";
 	for (int i = 0; i < field.length; i++){
 	    for (int j = 0; c < field[0].length; j++){
-		ans += map[r][c] + " ";
+		if (i == R1 && j == C1){
+		    ans += "S ";
+		} else if ( i == R2 && j == C2){
+		    ans += "E ";
+		} else{
+		    ans += map[r][c] + " ";
+		}
 	    }
 	    ans += "\n";
 	}
@@ -47,16 +53,31 @@ public class CowTravelling{
     }
 
     public int moveCowH(int c, int r, int t){
+	// checking to make sure we're in bounds...
 	if (  c < 0  || r < 0  || c >= field[0].length || r >= field.length  ){
 	    return 0;
 	}
-
+	// if you hit a tree, this way is not possible...
 	if (field[r][c] == '*'){
 	    return 0;
 	}
-	
+	// when you get to the right time, evaluate location...
+	if (t == T){
+	    if (r == R2 && c == C2){
+		return 1;
+	    } else{
+		return 0;
+	    }
+	}
+	// if you're not there yet and you're not stuck, keep moving... !
+	// recursion !
 	return travel(x+1, y, t+1) + travel(x-1, y, t+1) +
 	       travel(x, y+1, t+1) + travel(x, y+1, t+1);
     }
+    
+    public static void main(String[]args){
+	CowTravelling moo = new CowTravelling("cow1.txt");
+	System.out.println(moo + "\n\nPossibleWays: " + moo.moveCow());
+	// should work
 
 }
