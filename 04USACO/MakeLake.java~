@@ -1,13 +1,13 @@
 import java.util.*;
 import java.io.*;
 
-public class MakeLake{
+public class makelake{
     private int R, C, E, N;
     private int[][] pasture;
     private int[][] stomp;
     
 
-    public MakeLake(String filename){
+    public makelake(String filename){
 	try{
 	    Scanner in = new Scanner(new File(filename));
 	    R = in.nextInt();
@@ -111,7 +111,7 @@ public class MakeLake{
 
 	
     public static void main(String[]args){
-	MakeLake a = new MakeLake("makelake.txt");
+	makelake a = new makelake("makelake.txt");
 	//System.out.println(a.bString() + a.pString() + a.sString());
 	System.out.println(a.getVolume());
     }
