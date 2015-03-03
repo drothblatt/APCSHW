@@ -13,15 +13,15 @@ public class CowTravelling{
 	    T = in.nextInt();
 	    field = new char[N][M];
 	    for (int i = 0; i < N; i++){
-		String thisRow = in.nextLine();
+		String thisRow = in.next();
 		for (int j = 0; j < M; j++){
-		    pasture[i][j] = thisRow.charAt(j);
+		    field[i][j] = thisRow.charAt(j);
 		}
 	    }
-	    R1 = in.nextInt();
-	    C1 = in.nextInt();
-	    R2 = in.nextInt();
-	    C2 = in.nextInt();
+	    R1 = in.nextInt()-1;
+	    C1 = in.nextInt()-1;
+	    R2 = in.nextInt()-1;
+	    C2 = in.nextInt()-1;
 	}
 	catch(Exception e){
 	    System.out.println("File: "+filename+" could not be opened.");
@@ -33,13 +33,13 @@ public class CowTravelling{
     public String toString(){ 
 	String ans = "\n";
 	for (int i = 0; i < field.length; i++){
-	    for (int j = 0; c < field[0].length; j++){
+	    for (int j = 0; j < field[0].length; j++){
 		if (i == R1 && j == C1){
 		    ans += "S ";
 		} else if ( i == R2 && j == C2){
 		    ans += "E ";
 		} else{
-		    ans += map[r][c] + " ";
+		    ans += field[i][j] + " ";
 		}
 	    }
 	    ans += "\n";
@@ -71,13 +71,14 @@ public class CowTravelling{
 	}
 	// if you're not there yet and you're not stuck, keep moving... !
 	// recursion !
-	return travel(x+1, y, t+1) + travel(x-1, y, t+1) +
-	       travel(x, y+1, t+1) + travel(x, y+1, t+1);
+	return moveCowH(c+1, r, t+1) + moveCowH(c-1, r, t+1) +
+	       moveCowH(c, r+1, t+1) + moveCowH(c, r-1, t+1);
     }
     
     public static void main(String[]args){
 	CowTravelling moo = new CowTravelling("cow1.txt");
-	System.out.println(moo + "\n\nPossibleWays: " + moo.moveCow());
+	System.out.println(moo + "\n\nPossible Ways: " + moo.moveCow());
 	// should work
+    }
 
 }
