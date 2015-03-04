@@ -7,13 +7,7 @@ public class Sorts{
 	if (arr.length == 1){ // essentially a base case
 	    return;
 	}
-	/*
-	int[] copy = new int[arr.length];
-	
-	for (int i = 0; i < arr.length; i++){
-	    copy[i] = arr[i];
-	}
-	*/
+
 	int divider = arr.length/2;
 	int[] arr1 = new int[divider];
 	int[] arr2 = new int[arr.length - divider];
