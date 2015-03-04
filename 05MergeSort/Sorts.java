@@ -49,38 +49,38 @@ public class Sorts{
 	}
     }
 
-    // System.out.println(Arrays.toString(a) + "\n" + Arrays.toString(arr1)
-    //+ "\n" + Arrays.toString(arr2) + "\n");
-
-    /*
-    public String toString(int[] z){
-	String rStr = " [ ";
-	for (int i = 0; i < z.length; i++){
-	    rStr += z[i] + " ";
-	}
-	rStr += "] ...";
-	return rStr;
-    }
-    */
-    
     public static void main(String[]args){
 	Random r = new Random();
+	System.out.println("\nMergeSort v.0.1.0\n");
 
 	// TEST CASE 1:
-	int[] a1 = { -50, -43, -9, -2, 0, 1, 3, 6, 10, 14, 17, 19, 26, 34, 40, 73 } ;
+	int[] a1 = { -50, -43, -9, -2, 0, 1, 6, 10, 14, 19, 26, 34, 40, 73 } ;
 	System.out.println("Test Case 1:");
 	System.out.println("\nBefore: " + Arrays.toString(a1) + "\n\nsorting...\n");
 	mergesort(a1);
 	System.out.println("After:  " + Arrays.toString(a1) + "\n"); // A should be same as B
 
-	int[] a2 = {100, 67, 49, 35, 25, 24, 13, 11, 5, 1, 0, -1, -5, -19, -23, -29 } ;
+	// TEST CASE 2:
+	int[] a2 = {100, 67, 49, 34, 26, 13, 5, 1, 0, -1, -5, -19, -23, -29 } ;
 	System.out.println("Test Case 2:");
 	System.out.println("\nBefore: " + Arrays.toString(a2) + "\n\nsorting...\n");
 	mergesort(a2);
 	System.out.println("After:  " + Arrays.toString(a2) + "\n"); // A should be reverse of B
 
+	// TEST CASE 3a:
+	int tc3a = r.nextInt(16) + 3;
+	int[] a3a = new int[tc3a];
+	for (int i = 0; i < a3a.length; i++){
+	    a3a[i] = r.nextInt(6) - 3;
+	}
+	System.out.println("Test Case 3a:");
+	System.out.println("\nBefore: " + Arrays.toString(a3a) + "\n\nsorting...\n");
+	mergesort(a3a);
+	System.out.println("After:  " + Arrays.toString(a3a) + "\n"); // A should be reverse of B
+
+
 	// TEST CASE 3b: 
-	int tc3b = r.nextInt(20) + 3;
+	int tc3b = r.nextInt(16) + 3;
 	int[] a3b = new int[tc3b];
 	for (int i = 0; i < a3b.length; i++){
 	    a3b[i] = r.nextInt(2000001) - 1000000;
