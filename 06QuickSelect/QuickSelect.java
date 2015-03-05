@@ -15,25 +15,29 @@ public class QuickSelect{
 
 	int pivot = ary[start];
         start++;
-
+	int pos = start++;
         while ( start < end ) { 
-             if ( ary[start] < pivot ) { 
-                  D[start] = ary[start];
+             if ( ary[pos] < pivot ) { 
+                  D[start] = ary[pos];
                   start++;
              } else {
-                  D[end] = ary[start];
+                  D[end] = ary[pos];
+		  start--;
                   end--;
-		  start++;
              }
+	     pos++;
         }
-        D[start] = pivot;
+	
+	if (start == end){
+	    D[start] = pivot;
+	}
         
         System.out.println(Arrays.toString(D));
     }
 
     public static void main(String[]args){
-	int[] testing = {19, 7, 14, 19, 2, 10, 6, 17};
-	partition(testing, 2, 6);
+	int[] testing = {21, 7, 14, 18, 2, 13, 10, 6, 17};
+	partition(testing, 2, 7);
     }
 }
 
