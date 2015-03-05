@@ -1,18 +1,26 @@
 import java.util.*;
 
 public class Comparing{
+    // See screenshot of terminal to see actual results.
+    // A summary of results: arrays.sort() was faster, getting progressively faster as size went up
 
     public static void main(String[] args){
 	int size = 1000000;
 	int sort = 0;
 
 	Random r = new Random();
+
+	if (args.length == 0){
+	    System.out.println("Compaing <sort> <size>... " +
+			       "Need to pick a sort (0 for mergesort, 1 for arrays.sort() ");
+	    return;
+	}
        
 	try{
 	    sort = Integer.parseInt(args[0]);
 	    size = Integer.parseInt(args[1]);
 	} catch( IndexOutOfBoundsException e){
-	    System.out.println("didn't work. Comparing <sort> <size>");
+	    System.out.println("Didn't work. Comparing <sort> <size>");
 	    return;
 	}
 
@@ -22,12 +30,15 @@ public class Comparing{
 	}
 
 	if (sort == 0){
-	    System.out.println("mergesort:");
+	    System.out.println("MergeSort:");
+	    System.out.println(size + "\n");
 	    Sorts.mergesort(arr);
 	} else{
-	    System.out.println("arrays.Sort(): ");
-	    Sorts.arrays.Sort();
+	    System.out.println("arrays.sort(): ");
+	    System.out.println(size + "\n");
+	    Arrays.sort(arr);
 	}
-
     }
+
+}
 					      
