@@ -39,6 +39,8 @@ public class QuickSelect{
 	int[] testing = {21, 7, 14, 18, 2, 13, 10, 6, 17};
 	partition(testing, 2, 7);
     }
+
+    // yello.
 }
 
     
