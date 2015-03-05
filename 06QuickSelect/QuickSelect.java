@@ -7,6 +7,18 @@ public class QuickSelect{
 	}
 
 	int pivot = ary[start];
+         
+        start++;
+
+
+        while ( start < end ) { 
+             if ( ary[start] < pivot ) { 
+                  D[start] = ary[start];
+             } else {
+                  D[start] = ary[start];
+             }
+        }
+        
 
 	
 
