@@ -14,15 +14,15 @@ public class QuickSelect{
         System.out.println(Arrays.toString(D));
 
 	int pivot = ary[start];
-        start++;
-	int pos = start++;
+	start++;
+	
+	int pos = start;
         while ( start < end ) { 
              if ( ary[pos] < pivot ) { 
                   D[start] = ary[pos];
                   start++;
              } else {
                   D[end] = ary[pos];
-		  start--;
                   end--;
              }
 	     pos++;
