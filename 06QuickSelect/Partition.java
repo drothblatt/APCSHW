@@ -1,9 +1,10 @@
 import java.util.*;
 
-public class QuickSelect{
+public class Partition{
+    // this is the work that we did for friday 3/6 
+    // this is the void version of parititon
 
-
-    public static int partition(int[] ary, int start, int end){
+    public static void partition(int[] ary, int start, int end){
         System.out.println(Arrays.toString(ary));
 	int[] d = new int[ary.length];
         for (int i = 0; i < start; i++) {
@@ -39,10 +40,9 @@ public class QuickSelect{
         System.out.println(Arrays.toString(d));
     }
 
-    
-    // fin.
+    public static void main(String[]args){
+	int[] testing = {21, 7, 19, 1, 4, 3, 23, 6, 35, 17};
+	partition(testing, 4, 8);
+    }
+
 }
-
-    
-
-  
