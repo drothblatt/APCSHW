@@ -6,7 +6,21 @@ public class QuickSelect{
 	if (k <= 0 || k > ary.length){
 	    throw new IndexOutOfBoundsException();
 	}
-	return 1;
+	int start = 0;
+	int end = ary.length;
+
+	int ans = -1;
+	while (ans <= 0){  
+	    int pi = partition(ary, start, end); // pi - index of resulting partition
+	    if ( pi == k-1){
+		ans = ary[pi];
+	    } else if (pi > k-1) {
+		end = pi - 1;
+	    } else if (pi < k-1){
+		start = pi + 1;
+	    }
+	}
+	return ans;
     }
 
 
@@ -50,14 +64,11 @@ public class QuickSelect{
 	System.out.println(quickSelect(testing,5)); 
 	System.out.println(quickSelect(testing,-3)); // returns exception as it should
 	System.out.println(quickSelect(testing,15)); // returns exception as it should
-	
-	
 
     }
 
-    
-    
 }
+    
 
     
 
