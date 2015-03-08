@@ -7,7 +7,7 @@ public class QuickSelect{
 	    throw new IndexOutOfBoundsException();
 	}
 	int start = 0;
-	int end = ary.length;
+	int end = ary.length - 1;
 
 	int ans = -1;
 	while (ans <= 0){  
