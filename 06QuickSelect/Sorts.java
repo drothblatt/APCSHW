@@ -20,7 +20,7 @@ public class Sorts{
     }
 
     public static int quickSelect(int[] ary, int k){
-	if (k <= 0 || k > ary.length){
+	if (k < 0 || k >= ary.length){
 	    throw new IndexOutOfBoundsException();
 	}
 	int start = 0;
@@ -29,11 +29,11 @@ public class Sorts{
 	int ans = -1;
 	while (ans <= 0){  
 	    int pi = partition(ary, start, end); // pi - index of resulting partition
-	    if ( pi == k-1){
+	    if ( pi == k){
 		ans = ary[pi];
-	    } else if (pi > k-1) {
+	    } else if (pi > k) {
 		end = pi - 1;
-	    } else if (pi < k-1){
+	    } else if (pi < k){
 		start = pi + 1;
 	    }
 	}
