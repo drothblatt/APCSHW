@@ -43,13 +43,17 @@ public class Sorts{
 
     public static int partition(int[] ary, int start, int end){
         //System.out.println(Arrays.toString(ary));
-	int[] d = new int[ary.length];
+	//int[] d = new int[ary.length];
 
 	Random r = new Random();
-	int pivot = ary[start + r.nextInt(end - start + 1) ];
+
+	int rInt = start + r.nextInt(end - start + 1);
+	int pivot = ary[rInt];
 
 	int pos = start;
 	int temp = 0;
+
+	
 
         while ( start < end) { 
 	    if ( ary[pos] < pivot ) { 
