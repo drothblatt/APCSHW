@@ -3,82 +3,58 @@ import java.util.*;
 public class Sorts{
 
     public static void quicksort(int[] ary){
-	  
-
-
-
+	quicksort(ary, 0, ary.length-1);
     }
 
-    public static void slowsort(int[] ary){
-	int[] d = new int[ary.length];
-	for (int i = 0; i < ary.length; i++){
-	    d[i] = quickSelect(ary,i+1);
-	}
-	for (int i = 0; i < d.length; i++){
-	    ary[i] = d[i];
-	}
+    public static void quicksort(int[] ary, int start, int end){
+
     }
-
-    public static int quickSelect(int[] ary, int k){
-	if (k < 0 || k >= ary.length){
-	    throw new IndexOutOfBoundsException();
-	}
-	int start = 0;
-	int end = ary.length - 1;
-
-	int ans = -1;
-	while (ans <= 0){  
-	    int pi = partition(ary, start, end); // pi - index of resulting partition
-	    if ( pi == k){
-		ans = ary[pi];
-	    } else if (pi > k) {
-		end = pi - 1;
-	    } else if (pi < k){
-		start = pi + 1;
-	    }
-	}
-	return ans;
-    }
-
 
     public static int partition(int[] ary, int start, int end){
-        //System.out.println(Arrays.toString(ary));
-	//int[] d = new int[ary.length];
-
+        System.out.println(Arrays.toString(ary));
 	Random r = new Random();
-
-	int rInt = start + r.nextInt(end - start + 1);
-	int pivot = ary[rInt];
-
+	int temp;
+	int pi = start + r.nextInt(end - start + 1);
+	int pivot = ary[pi];
 	int pos = start;
-	int temp = 0;
 
-	
+	temp = ary[end];
+	ary[end] = ary[pi];
+	ary[pi] = temp;
+
+        System.out.println("pivot: " + pivot + " , start: " + start + 
+			   " , end: " + end); 
 
         while ( start < end) { 
 	    if ( ary[pos] < pivot ) { 
-		d[start] = ary[pos];
+		System.out.println ( ary[pos] + " < " + pivot) ;
+
+		temp = ary[pos];
+		ary[pos] = ary[start];
+		ary[start] = temp;
 		start++;
 	    } else if ( ary[pos] > pivot ) {
-		d[end] = ary[pos];
+		System.out.println ( ary[pos] + " > " + pivot) ;
+		temp = ary[pos];
+		ary[pos] = ary[end];
+		ary[end] = temp;
 		end--;
 	    }
 	    pos++;
+	    System.out.println(Arrays.toString(ary));
         }
-
-	d[start] = pivot; // no if statement needed
-	for(int i = 0; i < d.length; i++){
-	    if (d[i] != 0){
-		ary[i] = d[i];
-	    }
-	}	 
+	temp = ary[pos];
+	ary[start] = pivot;
+	ary[pos] = temp; 
+	System.out.println(Arrays.toString(ary));
 	return start;
     }
+
 
     public static void main(String[]args){
 	int[] testing = {21, 7, 19, 1, 4, 3, 23, 6, 35, 17};
 	System.out.println(Arrays.toString(testing));
-	quicksort(testing);
+	System.out.println(partition(testing, 0, 7));
 	System.out.println(Arrays.toString(testing));
 
     }
