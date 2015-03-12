@@ -21,4 +21,6 @@ public class myLinkedList{
     public String toString(){}
 
     public int indexOf(){}
+
+    
 }
