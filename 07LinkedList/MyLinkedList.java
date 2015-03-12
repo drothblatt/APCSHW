@@ -1,8 +1,16 @@
 
-
 public class myLinkedList{
+    private int size;
+    private LNode start;
 
-    public myLinkedList{}
+    public myLinkedList(LNode n){
+	start = n;
+    }
+
+    public myLinkedList(){
+	LNode m = new LNode(0);
+	myLinkedList(m);
+    }
 
     public int get(int index){}
 
@@ -22,5 +30,4 @@ public class myLinkedList{
 
     public int indexOf(){}
 
-    
 }
