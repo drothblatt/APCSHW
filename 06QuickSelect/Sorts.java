@@ -18,13 +18,36 @@ public class Sorts{
 	int pivot = ary[pi];
 	int pos = start;
 
+	System.out.println("pivot: " + pivot + " , start: " + start + 
+			   " , end: " + end); 
+
 	temp = ary[end];
 	ary[end] = ary[pi];
 	ary[pi] = temp;
 
+	for (int i = start; i < end; i++){
+	    if (ary[i] < pivot){
+		temp = ary[i];
+		ary[i] = ary[pos];
+		ary[pos] = temp;
+		pos++;
+	    }
+	}
+	temp = ary[end];
+	ary[end] = ary[pos];
+	ary[pos] = temp;
+	System.out.println(Arrays.toString(ary));
+	return pos;
+    }
+
+    /*
+	
+
         System.out.println("pivot: " + pivot + " , start: " + start + 
 			   " , end: " + end); 
 
+
+	/*
         while ( start < end) { 
 	    if ( ary[pos] < pivot ) { 
 		System.out.println ( ary[pos] + " < " + pivot) ;
@@ -46,15 +69,18 @@ public class Sorts{
 	temp = ary[pos];
 	ary[start] = pivot;
 	ary[pos] = temp; 
+	
 	System.out.println(Arrays.toString(ary));
 	return start;
+	
     }
+    */
 
 
     public static void main(String[]args){
 	int[] testing = {21, 7, 19, 1, 4, 3, 23, 6, 35, 17};
 	System.out.println(Arrays.toString(testing));
-	System.out.println(partition(testing, 0, 7));
+	System.out.println(partition(testing, 0, 9));
 	System.out.println(Arrays.toString(testing));
 
     }
