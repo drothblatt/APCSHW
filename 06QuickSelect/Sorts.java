@@ -47,12 +47,28 @@ public class Sorts{
 	return pos;
     }
 
-    public static void main(String[]args){
-	int[] testing = {21, 7, 19, 1, 4, 3, 23, 6, 35, 17};
-	System.out.println(Arrays.toString(testing));
-	quicksort(testing);
-	System.out.println(Arrays.toString(testing));
+    public static boolean sorted(int[] ary){
+	for (int i = 0; i < ary.length-1; i++){
+	    if (ary[i] > ary[i+1]){
+		return false;
+	    }
+	} 
+	return true;
+    }
 
+    public static void main(String[]args){
+	/*
+	int[] testing = new int[2000000];
+	Random r = new Random();
+	for (int i = 0; i < testing.length; i++){
+	    testing[i] = r.nextInt(10000000)-5000000;
+	}
+					   
+	//System.out.println(Arrays.toString(testing));
+	quicksort(testing);
+	//System.out.println(Arrays.toString(testing) + "\n" + sorted(testing));
+	System.out.println(sorted(testing));
+	*/
     }
 
 }
