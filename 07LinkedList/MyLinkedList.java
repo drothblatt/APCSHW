@@ -1,16 +1,20 @@
 
-public class myLinkedList{
-    private int size;
-    private LNode start;
-
-    public myLinkedList(LNode n){
-	start = n;
+public class MyLinkedList{
+    private int size = 0;
+    private LNode head, tail;
+    /*
+    public myLinkedList(LNode h, LNode t){
+	head = h;
+	tail = t;
     }
 
     public myLinkedList(){
-	LNode m = new LNode(0);
-	myLinkedList(m);
+	LNode hx = new LNode(0);
+	LNode tx = new LNode(0);
+	myLinkedList(hx);
     }
+    */
+
 
     public int get(int index){}
 
@@ -18,15 +22,38 @@ public class myLinkedList{
     
     public void set(int index, int value){}
 
-    public void add(int value){}
+    public boolean add(int value){
+	if (size == 0){
+	    head = new LNode(0);
+	    tail = new LNode(0);
+	} else{
+	    LNode current = head;
+	    current = current.getNext();
+	    current.setData(value);
+	}
+	size++;
+	return true;
+    }
     
-    public void add(int index, int value){}
+    public boolean add(int index, int value){}
     
-    public boolean isEmpty(){}
+    public boolean isEmpty(){
+	return (size == 0);
+    }
 
-    public int size(){}
+    public int size(){
+	return size;
+    }
 
-    public String toString(){}
+    public String toString(){
+	String ans = "[ ";
+	LNode temp = head;
+	while (temp != null){
+	    ans += temp.getData() + ", ";
+	    temp = temp.getNext();
+	}
+	return ans + "]";	
+    }
 
     public int indexOf(){}
 
