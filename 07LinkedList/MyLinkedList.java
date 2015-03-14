@@ -107,10 +107,18 @@ public class MyLinkedList{
 	ans += "]";
 	return ans;	
     }
-    /*
-    public int indexOf(){}
-    */
-
+    
+    public int indexOf(int value){
+	LNode current = head;
+	for (int i = 0; i < size; i++){
+	    if (current.getData() == value){
+		return i;
+	    }
+	    current = current.getNext();
+	}
+	return -1; // not found at this point :(
+    }
+    
     public static void main(String[]args){
 	MyLinkedList l = new MyLinkedList();
 	Random r = new Random();
@@ -139,6 +147,8 @@ public class MyLinkedList{
 	l.add(5, -1000);
 	System.out.println(l.toString() + "\n" + l.size());
 	System.out.println("remove" + l.remove(10) + "\n" + l.toString() + l.size());
+
+	System.out.println(l.indexOf(-1000));
 	
     }
 }
