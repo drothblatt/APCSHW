@@ -32,9 +32,19 @@ public class MyLinkedList{
 
     /*
     public void remove(int index){}
-    
-    public void set(int index, int value){}
     */
+
+    public void set(int index, int value){
+	if (index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
+	LNode current = head; 
+	for (int i = 0; i < index; i++){
+	    current = current.getNext();
+	}
+	current.setData(value);
+    }
+    
 
     public boolean add(int value){
 	if (size == 0){
@@ -89,7 +99,9 @@ public class MyLinkedList{
 	}
 	System.out.println(l.toString() + "\n" + l.size());
 	System.out.println(l.get(5));
-	System.out.println("\n" + l.get(100));
+	l.set(5, 1000);
+	System.out.println(l.toString() + "\n" + l.size());
+
 	
     }
 }
