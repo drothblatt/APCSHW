@@ -3,20 +3,6 @@ import java.util.*;
 public class MyLinkedList{
     private int size = 0;
     private LNode head, tail;
-
-    /*
-    public myLinkedList(LNode h, LNode t){
-	head = h;
-	tail = t;
-    }
-
-    public myLinkedList(){
-	LNode hx = new LNode(0);
-	LNode tx = new LNode(0);
-	myLinkedList(hx, tx);
-    }
-    */
-
     
     public int get(int index){
 	if (index < 0 || index >= size){
@@ -58,9 +44,28 @@ public class MyLinkedList{
 	size++;
 	return true;
     }
-    /*
-    public boolean add(int index, int value){}
-    */
+    
+    public boolean add(int index, int value){
+	if (index < 0 || index > size){
+	    throw new IndexOutOfBoundsException();
+	}
+	LNode noo = new LNode(value);
+	if (index == size){
+	}
+	else if (index == 0){
+	    head = noo; 
+	    
+	}
+	else{
+	
+	    
+	    
+	}
+	size++;
+	return true;
+	
+    }
+    
     
     public boolean isEmpty(){
 	return (size == 0);
