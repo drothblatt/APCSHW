@@ -1,3 +1,4 @@
+import java.util.*;
 
 public class MyLinkedList{
     private int size = 0;
@@ -15,27 +16,29 @@ public class MyLinkedList{
     }
     */
 
-
+    /*
     public int get(int index){}
 
     public void remove(int index){}
     
     public void set(int index, int value){}
+    */
 
     public boolean add(int value){
 	if (size == 0){
-	    head = new LNode(0);
-	    tail = new LNode(0);
+	    head = new LNode(value);
+	    tail = head;
 	} else{
-	    LNode current = head;
-	    current = current.getNext();
-	    current.setData(value);
+	    LNode current = new LNode(value);
+	    tail.setNext(current);
+	    tail = current;
 	}
 	size++;
 	return true;
     }
-    
+    /*
     public boolean add(int index, int value){}
+    */
     
     public boolean isEmpty(){
 	return (size == 0);
@@ -45,16 +48,31 @@ public class MyLinkedList{
 	return size;
     }
 
-    public String toString(){
+    public String toString(){ 
 	String ans = "[ ";
 	LNode temp = head;
 	while (temp != null){
-	    ans += temp.getData() + ", ";
+	    ans += temp.getData() + " ";
 	    temp = temp.getNext();
 	}
-	return ans + "]";	
+	ans += "]";
+	return ans;	
     }
-
+    /*
     public int indexOf(){}
+    */
 
+    public static void main(String[]args){
+	MyLinkedList l = new MyLinkedList();
+	Random r = new Random();
+	l.add(1);
+	l.add(6);
+	l.add(-5);
+
+	for (int i = 0; i < 8; i++){
+	    l.add(r.nextInt(20) + 1);
+	}
+
+	System.out.println(l.toString());
+    }
 }
