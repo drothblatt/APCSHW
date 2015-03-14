@@ -51,17 +51,21 @@ public class MyLinkedList{
 	}
 	LNode noo = new LNode(value);
 	if (index == size){
+	    add(value);
+	} else{
+	    if (index == 0){
+		noo.setNext(head);
+		head = noo; 
+	    } else{
+		LNode current = head;
+		for (int i = 0; i < index-1; i ++){
+		    current = current.getNext();
+		}
+		noo.setNext(current.getNext());
+		current.setNext(noo);
+	    }
+	    size++;	
 	}
-	else if (index == 0){
-	    head = noo; 
-	    
-	}
-	else{
-	
-	    
-	    
-	}
-	size++;
 	return true;
 	
     }
@@ -98,6 +102,14 @@ public class MyLinkedList{
 	l.add(1);
 	l.add(6);
 	l.add(-5);
+	System.out.println(l.toString() + "\n" + l.size() + "l.add(3,21)");
+	l.add(3,21);
+	System.out.println(l.toString() + "\n" + l.size());
+	l.add(8);
+	l.add(9);
+	System.out.println(l.toString() + "\n" + l.size());
+	l.add(0,3);
+	System.out.println(l.toString() + "\n" + l.size());
 
 	for (int i = 0; i < 8; i++){
 	    l.add(r.nextInt(20) + 1);
@@ -106,7 +118,8 @@ public class MyLinkedList{
 	System.out.println(l.get(5));
 	l.set(5, 1000);
 	System.out.println(l.toString() + "\n" + l.size());
-
+	l.add(5, -1000);
+	System.out.println(l.toString() + "\n" + l.size());
 	
     }
 }
