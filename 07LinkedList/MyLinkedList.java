@@ -3,6 +3,7 @@ import java.util.*;
 public class MyLinkedList{
     private int size = 0;
     private LNode head, tail;
+
     /*
     public myLinkedList(LNode h, LNode t){
 	head = h;
@@ -12,13 +13,24 @@ public class MyLinkedList{
     public myLinkedList(){
 	LNode hx = new LNode(0);
 	LNode tx = new LNode(0);
-	myLinkedList(hx);
+	myLinkedList(hx, tx);
     }
     */
 
-    /*
-    public int get(int index){}
+    
+    public int get(int index){
+	if (index < 0 || index >= size){
+	    throw new IndexOutOfBoundsException();
+	}
+	LNode current = head;
+	for (int i = 0; i < index; i++){
+	    current = current.getNext();
+	}
+	return current.getData();
+    }
 
+
+    /*
     public void remove(int index){}
     
     public void set(int index, int value){}
@@ -65,6 +77,9 @@ public class MyLinkedList{
     public static void main(String[]args){
 	MyLinkedList l = new MyLinkedList();
 	Random r = new Random();
+
+	System.out.println(l.isEmpty()); // should be true
+
 	l.add(1);
 	l.add(6);
 	l.add(-5);
@@ -72,7 +87,9 @@ public class MyLinkedList{
 	for (int i = 0; i < 8; i++){
 	    l.add(r.nextInt(20) + 1);
 	}
-
-	System.out.println(l.toString());
+	System.out.println(l.toString() + "\n" + l.size());
+	System.out.println(l.get(5));
+	System.out.println("\n" + l.get(100));
+	
     }
 }
