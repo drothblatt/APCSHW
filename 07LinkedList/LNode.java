@@ -1,32 +1,26 @@
-public class LNode{
-    private int data; //or whatever type the data is
-    private LNode next; //LNode in an LNode… this is the reference to the “cdr”
-    
-    /*
-    public LNode(){}
-    public LNode(int d){}
-    public LNode(int d, LNode n){}
-    */
+public class LNode<T>{
+    private T data; //or whatever type the data is
+    private LNode<T> next; //LNode in an LNode… this is the reference to the “cdr”
 
-    public LNode(int d){
-	data = d;
+    public LNode(T nData){
+	setData(nData);
     }
 	
     //get and set Data
-    public int getData(){
+    public T getData(){
 	return data;
     }
 
-    public void setData(int x){
-	data = x;
+    public void setData(T nData){
+	data = nData;
     }
 
     //get and set Next
-    public LNode getNext(){
+    public LNode<T> getNext(){
 	return next;
     }
 
-    public void setNext(LNode y){
+    public void setNext(LNode<T> y){
 	next = y;
     }
 

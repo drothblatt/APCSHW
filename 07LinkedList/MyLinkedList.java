@@ -2,26 +2,24 @@ import java.util.*;
 
 public class MyLinkedList{
     private int size = 0;
-    private LNode head, tail;
+    private LNode<T> head, tail;
 
     public String name(){
 	return "rothblatt.david";
     }
     
-    public int get(int index){
+    public T get(int index){
 	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
-	LNode current = head;
+	LNode<T> current = head;
 	for (int i = 0; i < index; i++){
 	    current = current.getNext();
 	}
 	return current.getData();
     }
 
-
-    
-    public int remove(int index){
+    public T remove(int index){
 	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
@@ -30,7 +28,7 @@ public class MyLinkedList{
 	    ans = head.getData();
 	    head = head.getNext();
 	} else{
-	    LNode current = head; 
+	    LNode<T> current = head; 
 	    for (int i = 0; i < index - 1; i++){
 		current = current.getNext();
 	    }
@@ -42,11 +40,11 @@ public class MyLinkedList{
     }
     
 
-    public void set(int index, int value){
+    public void set(int index, T value){
 	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
-	LNode current = head; 
+	LNode<T> current = head; 
 	for (int i = 0; i < index; i++){
 	    current = current.getNext();
 	}
@@ -54,12 +52,12 @@ public class MyLinkedList{
     }
     
 
-    public boolean add(int value){
+    public boolean add(T value){
 	if (size == 0){
 	    head = new LNode(value);
 	    tail = head;
 	} else{
-	    LNode current = new LNode(value);
+	    LNode<T> current = new LNode(value);
 	    tail.setNext(current);
 	    tail = current;
 	}
@@ -67,11 +65,11 @@ public class MyLinkedList{
 	return true;
     }
     
-    public boolean add(int index, int value){
+    public boolean add(int index, T value){
 	if (index < 0 || index > size){
 	    throw new IndexOutOfBoundsException();
 	}
-	LNode noo = new LNode(value);
+	LNode<T> noo = new LNode(value);
 	if (index == size){
 	    add(value);
 	} else{
@@ -79,7 +77,7 @@ public class MyLinkedList{
 		noo.setNext(head);
 		head = noo; 
 	    } else{
-		LNode current = head;
+		LNode<T> current = head;
 		for (int i = 0; i < index-1; i ++){
 		    current = current.getNext();
 		}
@@ -112,8 +110,8 @@ public class MyLinkedList{
 	return ans;	
     }
     
-    public int indexOf(int value){
-	LNode current = head;
+    public int indexOf(T value){
+	LNode<T> current = head;
 	for (int i = 0; i < size; i++){
 	    if (current.getData() == value){
 		return i;
