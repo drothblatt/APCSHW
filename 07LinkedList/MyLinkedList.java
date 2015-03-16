@@ -90,7 +90,6 @@ public class MyLinkedList<T>{
 	
     }
     
-    
     public boolean isEmpty(){
 	return (size == 0);
     }
@@ -121,36 +120,5 @@ public class MyLinkedList<T>{
 	return -1; // not found at this point :(
     }
     
-    public static void main(String[]args){
-	MyLinkedList l = new MyLinkedList();
-	Random r = new Random();
-
-	System.out.println(l.isEmpty()); // should be true
-
-	l.add("Hello");
-	l.add(6);
-	l.add('c');
-	System.out.println(l.toString() + "\n" + l.size() + "l.add(3,21)");
-	l.add(3,21);
-	System.out.println(l.toString() + "\n" + l.size());
-	l.add(8);
-	l.add(9);
-	System.out.println(l.toString() + "\n" + l.size());
-	l.add(0,3);
-	System.out.println(l.toString() + "\n" + l.size());
-
-	for (int i = 0; i < 8; i++){
-	    l.add(r.nextInt(20) + 1);
-	}
-	System.out.println(l.toString() + "\n" + l.size());
-	System.out.println(l.get(5));
-	l.set(5, 1000);
-	System.out.println(l.toString() + "\n" + l.size());
-	l.add(5, -1000);
-	System.out.println(l.toString() + "\n" + l.size());
-	System.out.println("remove" + l.remove(10) + "\n" + l.toString() + l.size());
-
-	System.out.println(l.indexOf(-1000));
-	
-    }
+    // main is in tester.java
 }
