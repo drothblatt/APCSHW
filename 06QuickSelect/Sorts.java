@@ -60,6 +60,51 @@ public class Sorts{
 	return true;
     }
 
+
+
+
+
+    
+    public static void mergesort(int[] arr){
+	if (arr.length == 1){ // essentially a base case
+	    return;
+	}
+	int divider = arr.length/2;
+	int[] arr1 = new int[divider];
+	int[] arr2 = new int[arr.length - divider];
+	for (int m = 0; m < arr1.length; m++){
+	    arr1[m] = arr[m];
+	}
+	for (int n = 0; n < arr2.length; n++){
+	    arr2[n] = arr[n + divider];
+	}
+	mergesort(arr1); // recursion until we're left w/ arrays of 0 and 1 length.
+	mergesort(arr2);
+	letsUnite(arr, arr1, arr2);
+    }
+    public static void letsUnite(int[] arr, int[] arr1, int[] arr2){
+	int a = 0, b = 0, c = 0;
+	while (b < arr1.length && c < arr2.length){
+	    if (arr1[b] < arr2[c]){
+		arr[a] = arr1[b];
+		b++;
+	    } else{
+		arr[a] = arr2[c];
+		c++;
+	    }
+	    a++; // a gets bigger regardless
+	}
+	for (int i = b; i < arr1.length; i++ , a++){
+	    arr[a] = arr1[i];
+	}
+	for (int j = c; j < arr2.length; j++ , a++){
+	    arr[a] = arr2[j];
+	}
+    }
+
+
+
+
     public static void main(String[]args){
 	/*
 	int[] testing = new int[2000000];
