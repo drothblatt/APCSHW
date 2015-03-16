@@ -3,6 +3,10 @@ import java.lang.*;
 
 public class Sorts{
 
+    public String name(){
+	return "rothblatt.david";
+    }
+
     public static void mergesort(int[] arr){
 	if (arr.length == 1){ // essentially a base case
 	    return;
