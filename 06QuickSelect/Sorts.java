@@ -2,6 +2,10 @@ import java.util.*;
 
 public class Sorts{
 
+    public String name(){
+	return "rothblatt.david";
+    }
+
     public static void quicksort(int[] ary){
 	quicksort(ary, 0, ary.length-1);
     }
