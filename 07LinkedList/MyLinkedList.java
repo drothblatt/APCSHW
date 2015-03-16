@@ -3,6 +3,10 @@ import java.util.*;
 public class MyLinkedList{
     private int size = 0;
     private LNode head, tail;
+
+    public String name(){
+	return "rothblatt.david";
+    }
     
     public int get(int index){
 	if (index < 0 || index >= size){
