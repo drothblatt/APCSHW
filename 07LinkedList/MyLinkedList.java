@@ -1,6 +1,6 @@
 import java.util.*;
 
-public class MyLinkedList{
+public class MyLinkedList<T>{
     private int size = 0;
     private LNode<T> head, tail;
 
@@ -23,7 +23,7 @@ public class MyLinkedList{
 	if (index < 0 || index >= size){
 	    throw new IndexOutOfBoundsException();
 	}
-	int ans;
+	T ans;
 	if (index == 0){
 	    ans = head.getData();
 	    head = head.getNext();
@@ -127,9 +127,9 @@ public class MyLinkedList{
 
 	System.out.println(l.isEmpty()); // should be true
 
-	l.add(1);
+	l.add("Hello");
 	l.add(6);
-	l.add(-5);
+	l.add('c');
 	System.out.println(l.toString() + "\n" + l.size() + "l.add(3,21)");
 	l.add(3,21);
 	System.out.println(l.toString() + "\n" + l.size());
