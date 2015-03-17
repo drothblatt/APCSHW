@@ -5,13 +5,13 @@ public class MyLinkedList<T> implements Iterable<T>{
 	return new MyLLIterator<T>();
     }
 
-    public class MyLLIterator<T>{
+    public class MyLLIterator<T> implements Iterator<T>{
 	LNode<T> current;
 	public T next(){
 	    if (hasNext()){
-		return current.getNext();
+		return current.getData();
 	    } else{
-		return new NoSuchElementException();
+		throw new NoSuchElementException();
 	    }
 	    
 	}
@@ -22,8 +22,8 @@ public class MyLinkedList<T> implements Iterable<T>{
 	    return false;
 	}
 
-	public T remove(){
-	    return new UnsupportedOperationException();
+	public void remove(){
+	    throw new UnsupportedOperationException();
 	}
 
     }
