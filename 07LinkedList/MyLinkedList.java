@@ -1,6 +1,33 @@
 import java.util.*;
 
-public class MyLinkedList<T>{
+public class MyLinkedList<T> implements Iterable<T>{
+    public Iterator<T> iterator(){
+	return new MyLLIterator<T>();
+    }
+
+    public class MyLLIterator<T>{
+	LNode<T> current;
+	public T next(){
+	    if (hasNext()){
+		return current.getNext();
+	    } else{
+		return new NoSuchElementException();
+	    }
+	    
+	}
+	public boolean hasNext(){
+	    if (!(current.getNext()).equals(null)){
+		return true;
+	    }
+	    return false;
+	}
+
+	public T remove(){
+	    return new UnsupportedOperationException();
+	}
+
+    }
+
     private int size = 0;
     private LNode<T> head, tail;
 
