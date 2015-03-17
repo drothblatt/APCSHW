@@ -8,18 +8,16 @@ public class MyLinkedList<T> implements Iterable<T>{
     public class MyLLIterator<T> implements Iterator<T>{
 	LNode<T> current;
 	public T next(){
-	    if (hasNext()){
-		return current.getData();
-	    } else{
+	    if (!hasNext()){
 		throw new NoSuchElementException();
 	    }
+	    T ans = current.getData();
+	    current = current.getNext();
+	    return ans;
 	    
 	}
 	public boolean hasNext(){
-	    if (!(current.getNext()).equals(null)){
-		return true;
-	    }
-	    return false;
+	    return current != tail;
 	}
 
 	public void remove(){

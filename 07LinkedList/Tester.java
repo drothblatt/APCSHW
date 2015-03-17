@@ -2,7 +2,7 @@
 public class Tester{   
 
     public static void main(String[]args){
-	MyLinkedListOld<Integer> l = new MyLinkedListOld<Integer>();
+	MyLinkedList<Integer> l = new MyLinkedList<Integer>();
 	
 	System.out.println("\n" + l.name() + "\n");
 
@@ -56,6 +56,13 @@ public class Tester{
 	System.out.println("Current Size: " + "\n" + l.size() + "\n");
 
 	System.out.println("Index of 36 : " + l.indexOf(36) + "\n\n"); // should be 7 now
+
+	
+	System.out.println("\n\nchecking if iterable:");
+	for (int i: l){
+	    System.out.println("Index " + i + ": " + l.get(i));
+	}
+
 
     }
 
