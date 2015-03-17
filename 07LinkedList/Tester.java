@@ -2,7 +2,7 @@
 public class Tester{   
 
     public static void main(String[]args){
-	MyLinkedList<Integer> l = new MyLinkedList<Integer>();
+	MyLinkedListOld<Integer> l = new MyLinkedListOld<Integer>();
 	
 	System.out.println("\n" + l.name() + "\n");
 
