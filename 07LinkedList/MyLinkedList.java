@@ -54,10 +54,10 @@ public class MyLinkedList<T>{
 
     public boolean add(T value){
 	if (size == 0){
-	    head = new LNode(value);
+	    head = new LNode<T>(value);
 	    tail = head;
 	} else{
-	    LNode<T> current = new LNode(value);
+	    LNode<T> current = new LNode<T>(value);
 	    tail.setNext(current);
 	    tail = current;
 	}
@@ -69,7 +69,7 @@ public class MyLinkedList<T>{
 	if (index < 0 || index > size){
 	    throw new IndexOutOfBoundsException();
 	}
-	LNode<T> noo = new LNode(value);
+	LNode<T> noo = new LNode<T>(value);
 	if (index == size){
 	    add(value);
 	} else{
