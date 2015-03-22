@@ -1,10 +1,14 @@
 import java.util.*;
 
 public class MyStack<T>{
-    private LinkedList<T> l;
+    private LinkedList<T> l = new LinkedList<T>();
 
     public String name(){
 	return "rothblatt.david";
+    }
+    
+    public String toString(){
+	return l.toString();
     }
 
     public boolean empty(){
@@ -22,6 +26,25 @@ public class MyStack<T>{
 
     public T pop(){
 	return l.remove(0);
+    }
+
+   
+
+    public static void main(String[]args){
+	MyStack<Integer> s = new MyStack<Integer>(); 
+	System.out.println("\n\nMyStack\n");
+	s.push(1);
+	s.push(1);
+	s.push(2);
+	s.push(3);
+	s.push(5);
+	System.out.println("expecting [5, 3, 2, 1, 1]:    " + s.toString() );
+	System.out.println(s.peek()); // should print out 5
+	System.out.println(s.pop()); // should print out 5 and remove it 
+	System.out.println("expecting [3, 2, 1, 1]:       " + s.toString() );
+	s.push(8);
+	System.out.println("expecting [8, 3, 2, 1, 1]:    " + s.toString() );
+	System.out.println("\n\n");
     }
 
 }
