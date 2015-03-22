@@ -20,6 +20,8 @@ public class MyStack<T>{
 	return l.get(0);
     }
 
-    
+    public T pop(){
+	return l.remove(0);
+    }
 
 }
