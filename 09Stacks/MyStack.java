@@ -30,9 +30,8 @@ public class MyStack<T>{
 	return l.remove(0);
     }
 
-   
-
     public static void main(String[]args){
+	/*
 	MyStack<Integer> s = new MyStack<Integer>(); 
 	MyStack<String> t = new MyStack<String>();
 
@@ -72,7 +71,8 @@ public class MyStack<T>{
 	}
 	System.out.println(t.toString() );
 	t.pop();
-
+	
+	*/
     }
 
 }
