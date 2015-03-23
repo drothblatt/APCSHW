@@ -12,17 +12,12 @@ public class MyQueue<T>{
     }
     
     public boolean enqueue(T value){
-	q.add(size-1,value);
-	return true;
+	return q.add(value); // will use add method in myLL
+	
     }
 
     public T dequeue(){
-	return l.get(0);
+	return q.remove(0); // will use remove method in myLL
     }
-
-    
-
-
-
 
 }
