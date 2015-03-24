@@ -1,7 +1,7 @@
 import java.util.*;
 
 public class MyStack<T>{
-    private LinkedList<T> l = new LinkedList<T>();
+    private MyLinkedList<T> l = new MyLinkedList<T>();
 
     public String name(){
 	return "rothblatt.david";
