@@ -33,6 +33,7 @@ public class MyDeque{
     }
 
     public T removeFirst(){
+	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[head];
 	data[head] = null;
 	head--; 
@@ -41,6 +42,7 @@ public class MyDeque{
     }
 
     public T removeLast(){
+	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[tail];
 	data[tail] = null;
 	tail--;
@@ -49,11 +51,13 @@ public class MyDeque{
     }
 
     public T getFirst(){
+	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[head];
 	return value;
     }
 
     public T getLast(){
+	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[tail];
 	return value;
     }
