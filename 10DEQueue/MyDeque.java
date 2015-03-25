@@ -9,8 +9,8 @@ public class MyDeque<T>{
     }
     public MyDeque(int s){
 	data = new Object[s];
-	head = s/2-1;
-	tail = s/2-1;
+	head = s/2;
+	tail = head-1;
 	size = 0;
     }
 
@@ -19,17 +19,20 @@ public class MyDeque<T>{
     }
 
     public void addFirst(T value){
-	int pos = head+1;
-	data[pos] = value;
 	head++;
-	if(size == 0) tail++;
+	if (head == data.length){
+	    head = 0;
+	}
+	data[head] = value;
 	size++;
     }
 
     public void addLast(T value){
-	int pos = tail-1;
-	data[pos] = value;
 	tail--;
+	if (tail < 0){
+	    tail = data.length-1;
+	}
+	data[tail] = value;
 	size++;
     }
 
@@ -111,7 +114,7 @@ public class MyDeque<T>{
 	a.addFirst("input 3");
 	a.addLast("input 4");
 	a.addLast("input 5");
-	a.addLast("input 6");
+	//a.addLast("input 6");
 	System.out.println("expecting [6 5 4 --|||-- 1 2 3]..." + a.toString());
 	System.out.println(a.showRealArray());
 
