@@ -19,8 +19,7 @@ public class MyDeque{
     }
 
     public void addFirst(T value){
-
-
+	
     }
 
     public void addLast(T value){
@@ -44,6 +43,19 @@ public class MyDeque{
     public T getLast(){
 
     }
+
+    public String toString(){
+	String ans = "[";
+	for (int i = bottom; i <= top; i++){
+	    ans += a[i] + " ";
+	}
+	ans += "]";
+	return ans;
+    }
+
+    public static void main(String[]args){
+    }
+   
 
 
 }
