@@ -19,11 +19,17 @@ public class MyDeque{
     }
 
     public void addFirst(T value){
-	
+	int pos = head+1;
+	a[pos] = value;
+	head++;
+	size++;
     }
 
     public void addLast(T value){
-
+	int pos = bottom-1;
+	a[pos] = value;
+	bottom--;
+	size++;
 
     }
 
@@ -47,7 +53,7 @@ public class MyDeque{
     public String toString(){
 	String ans = "[";
 	for (int i = bottom; i <= top; i++){
-	    ans += a[i] + " ";
+	    ans += data[i] + " ";
 	}
 	ans += "]";
 	return ans;
