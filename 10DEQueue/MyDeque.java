@@ -1,11 +1,11 @@
 import java.util.*;
 
-public class MyDeque{
+public class MyDeque<T>{
     private int head, tail, size;
     private Object[] data;
 
     public MyDeque(){
-	this(100);
+	this(12);
     }
     public MyDeque(int s){
 	data = new Object[s];
@@ -22,13 +22,14 @@ public class MyDeque{
 	int pos = head+1;
 	data[pos] = value;
 	head++;
+	if(size == 0) tail++;
 	size++;
     }
 
     public void addLast(T value){
-	int pos = bottom-1;
+	int pos = tail-1;
 	data[pos] = value;
-	bottom--;
+	tail--;
 	size++;
     }
 
@@ -64,14 +65,27 @@ public class MyDeque{
 
     public String toString(){
 	String ans = "[";
-	for (int i = bottom; i <= top; i++){
+	for (int i = tail; i <= head; i++){
 	    ans += data[i] + " ";
 	}
 	ans += "]";
 	return ans;
     }
+    
+    public String showRealArray(){
+	return Arrays.toString(data);
+    }
 
     public static void main(String[]args){
+	MyDeque<String> a = new MyDeque<String>();
+	a.addFirst("--|||--");
+	a.addFirst("input 1");
+	a.addFirst("input 2");
+	a.addFirst("input 3");
+	System.out.println(a.toString());
+	System.out.println(a.showRealArray());
+
+
     }
    
 
