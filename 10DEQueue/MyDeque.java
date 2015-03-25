@@ -20,34 +20,42 @@ public class MyDeque{
 
     public void addFirst(T value){
 	int pos = head+1;
-	a[pos] = value;
+	data[pos] = value;
 	head++;
 	size++;
     }
 
     public void addLast(T value){
 	int pos = bottom-1;
-	a[pos] = value;
+	data[pos] = value;
 	bottom--;
 	size++;
-
     }
 
     public T removeFirst(){
-
-
+	T value = (T)data[head];
+	data[head] = null;
+	head--; 
+	size--;
+	return value;
     }
 
     public T removeLast(){
-
-
+	T value = (T)data[tail];
+	data[tail] = null;
+	tail--;
+	size--;
+	return value;
     }
 
     public T getFirst(){
+	T value = (T)data[head];
+	return value;
     }
 
     public T getLast(){
-
+	T value = (T)data[tail];
+	return value;
     }
 
     public String toString(){
