@@ -92,10 +92,41 @@ public class MyDeque<T>{
 	System.out.println("expect 6..." + a.getLast()); // expecting 6
 	System.out.println("expect 3..." + a.getFirst()); // expecting 3
 	System.out.println("expect 6..." + a.removeLast()); // expecting 6
-	System.out.println("expect 3..." + a.removeFirst()); // expecting 6
-	System.out.println(a.head + " " + a.tail + a.size);
+	System.out.println("expect 3..." + a.removeFirst()); // expecting 3
 	System.out.println("expecting [5 4 --|||-- 1 2]..." + a.toString());
 	System.out.println(a.showRealArray());
+       
+	System.out.println( a.removeFirst()); // expecting 2
+	System.out.println( a.removeFirst()); // expecting 1
+	System.out.println( a.removeFirst()); // expecting --|||--
+	System.out.println( a.removeFirst()); // expecting 4
+	System.out.println( a.removeFirst()); // expecting 5
+	System.out.println("expecting []..." + a.toString());
+
+	//System.out.println( a.removeFirst()); // expecting error
+
+	a.addFirst("--|||--");
+	a.addFirst("input 1");
+	a.addFirst("input 2");
+	a.addFirst("input 3");
+	a.addLast("input 4");
+	a.addLast("input 5");
+	a.addLast("input 6");
+	System.out.println("expecting [6 5 4 --|||-- 1 2 3]..." + a.toString());
+	System.out.println(a.showRealArray());
+
+
+	System.out.println( a.removeLast()); // expecting 6
+	System.out.println( a.removeLast()); // expecting 5
+	System.out.println( a.removeLast()); // expecting 4
+	System.out.println( a.removeLast()); // expecting --||--
+	System.out.println( a.removeLast()); // expecting 1
+	System.out.println( a.removeLast()); // expecting 2
+	System.out.println( a.removeLast()); // expecting 3
+
+	System.out.println("expecting []..." + a.toString());
+
+
 
 
 
