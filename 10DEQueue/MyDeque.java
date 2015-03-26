@@ -19,22 +19,22 @@ public class MyDeque<T>{
     }
 
     public void addFirst(T value){
-	head++;
-	if (size == 0) tail++;
 	if (head == data.length){
 	    head = 0;
 	}
 	data[head] = value;
+	head++;
+	if (size == 0) tail++;
 	size++;
     }
 
     public void addLast(T value){
-	tail--;
-	if (size == 0) head--;
 	if (tail < 0){
 	    tail = data.length-1;
 	}
 	data[tail] = value;
+	tail--;
+	if (size == 0) head--;	
 	size++;
     }
 
