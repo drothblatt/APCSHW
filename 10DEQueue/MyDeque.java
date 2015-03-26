@@ -20,6 +20,7 @@ public class MyDeque<T>{
 
     public void addFirst(T value){
 	head++;
+	if (size == 0) tail++;
 	if (head == data.length){
 	    head = 0;
 	}
@@ -29,6 +30,7 @@ public class MyDeque<T>{
 
     public void addLast(T value){
 	tail--;
+	if (size == 0) head--;
 	if (tail < 0){
 	    tail = data.length-1;
 	}
@@ -39,18 +41,18 @@ public class MyDeque<T>{
     public T removeFirst(){
 	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[head];
-	data[head] = null;
 	head--; 
 	size--;
+	if (head == -1) head = data.length - 1;
 	return value;
     }
 
     public T removeLast(){
 	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[tail];
-	data[tail] = null;
 	tail++;
 	size--;
+	if (tail == data.length) tail = 0;
 	return value;
     }
 
@@ -65,7 +67,7 @@ public class MyDeque<T>{
 	T value = (T)data[tail];
 	return value;
     }
-
+    
     public String toString(){
 	String ans = "[";
 	for (int i = tail; i <= head; i++){
@@ -74,7 +76,7 @@ public class MyDeque<T>{
 	ans += "]";
 	return ans;
     }
-    
+   
     public String showRealArray(){
 	return Arrays.toString(data);
     }
