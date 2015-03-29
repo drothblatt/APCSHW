@@ -2,6 +2,7 @@ import java.util.*;
 
 public class MyDeque<T>{
     private int head, tail, size;
+    private int start;
     private Object[] data;
 
     public MyDeque(){
@@ -10,35 +11,39 @@ public class MyDeque<T>{
     public MyDeque(int s){
 	data = new Object[s];
 	head = s/2;
-	tail = head+1;
+	tail = head-1;
 	size = 0;
+	start = head; 
     }
 
     public String name(){
 	return "rothblatt.david";
     }
 
-    public void resize(){
+    public boolean resize(){
 	if (size == data.length){
-	    int l = size;
-	    Object[] copy = new Object[l*2];
-	    for (int i = 0; i < l; i++){
-		copy[i] = data[ (i + head) % l];
+	    Object[] copy = new Object[size*2];
+	    for (int i = 1; i < size; i++){
+		System.out.println(Arrays.toString(copy));
+		copy[i] = data[ (i + head) % (size)];
 	    }
 	    head = 0; 
-	    tail = l-1;
+	    tail = size-1;
 	    data = copy;
 	}
+	return true;
     }
     
     public String toString(){
 	String ans = "[ ";
 	if (size > 0){
-	    for (int i = 0; i < size; i++){
-		ans += data[ (i + head) % size] + " ";
+	    for (int i = 0; i < size-1; i++){
+		ans += data[ (i + head) % (size+start)] + ", ";
 	    }
+	ans += data[tail%(size+start)] + " ]";
+	} else {
+	    ans += "]";
 	}
-	ans += "]";
 	return ans;
     }
 
@@ -96,20 +101,51 @@ public class MyDeque<T>{
 	return Arrays.toString(data);
     }
 
+    public String HeadTailSize(){
+	return "head: " + head + " tail: " + tail + " size: " + size;
+    }
+
     public static void main(String[]args){
 	MyDeque<String> a = new MyDeque<String>();
+
+	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
+
 	a.addFirst("3");
+	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
+
 	a.addFirst("2");
+	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
+
 	a.addFirst("1");
+	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
+
 	a.addLast("4");
+	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
+
 	a.addLast("5");
+	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
+	//System.out.println(a.showRealArray());
+
+
 	a.addLast("6");
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+	//System.out.println(a.showRealArray());
+
+
+	a.addFirst("7");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+
+	//System.out.println(a.showRealArray());
+
 
 	/*
 	a.addFirst("--|||--");
