@@ -2,7 +2,6 @@ import java.util.*;
 
 public class MyDeque<T>{
     private int head, tail, size;
-    private int start;
     private Object[] data;
 
     public MyDeque(){
