@@ -25,7 +25,7 @@ public class MyDeque<T>{
 	    Object[] copy = new Object[size*2];
 	    for (int i = 1; i < size; i++){
 		System.out.println(Arrays.toString(copy));
-		copy[i] = data[ (i + head) % (size)];
+		copy[i-1] = data[ (i + head) % (size)];
 	    }
 	    head = 0; 
 	    tail = size-1;
