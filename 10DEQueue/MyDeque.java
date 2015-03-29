@@ -98,6 +98,20 @@ public class MyDeque<T>{
 
     public static void main(String[]args){
 	MyDeque<String> a = new MyDeque<String>();
+	System.out.println(a.toString());
+	a.addFirst("3");
+	System.out.println(a.toString());
+	a.addFirst("2");
+	System.out.println(a.toString());
+	a.addFirst("1");
+	System.out.println(a.toString());
+	a.addLast("4");
+	System.out.println(a.toString());
+	a.addLast("5");
+	System.out.println(a.toString());
+	a.addLast("6");
+
+	/*
 	a.addFirst("--|||--");
 	a.addFirst("input 1");
 	a.addFirst("input 2");
@@ -156,6 +170,7 @@ public class MyDeque<T>{
 	b.removeLast();
 	b.getFirst();
 	b.getLast(); // all four b's throw exception as desired 
+	*/
 
 
 	
