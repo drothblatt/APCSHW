@@ -21,29 +21,28 @@ public class MyDeque<T>{
     }
 
     public boolean resize(){
-	if (size == data.length){
-	    Object[] copy = new Object[size*2];
-	    for (int i = 1; i < size; i++){
-		System.out.println(Arrays.toString(copy));
-		copy[i-1] = data[ (i + head) % (size)];
+	if ( size == data.length ){
+	    Object[] copy = new Object[size*2]; 
+	    for (int i = 0; i < size; i++){
+		copy[i] = data[ (i + head) % (size)];
 	    }
 	    head = 0; 
 	    tail = size-1;
 	    data = copy;
-	}
-	return true;
+	    return true;
+	}	    
+	return false;
     }
     
     public String toString(){
-	String ans = "[ ";
+	String ans = "[";
 	if (size > 0){
 	    for (int i = 0; i < size-1; i++){
-		ans += data[ (i + head) % (size+start)] + ", ";
+		ans += data[ (head+i) % data.length] + ", ";
 	    }
-	ans += data[tail%(size+start)] + " ]";
-	} else {
-	    ans += "]";
+	    ans += data[tail];
 	}
+	ans += "]";
 	return ans;
     }
 
@@ -106,6 +105,7 @@ public class MyDeque<T>{
     }
 
     public static void main(String[]args){
+	/*
 	MyDeque<String> a = new MyDeque<String>();
 
 	System.out.println(a.HeadTailSize());
@@ -139,81 +139,69 @@ public class MyDeque<T>{
 	//System.out.println(a.showRealArray());
 
 
-	a.addFirst("7");
+	a.addFirst("0");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+	
+	a.addFirst("-1");
 	System.out.println(a.resize());
 	System.out.println(a.HeadTailSize());
 	System.out.println(a.toString());
 
-	//System.out.println(a.showRealArray());
+	a.addFirst("-2");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
 
+	a.addLast("7");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
 
-	/*
-	a.addFirst("--|||--");
-	a.addFirst("input 1");
-	a.addFirst("input 2");
-	a.addFirst("input 3");
-	System.out.println("expecting [--||-- 1 2 3]..." +  a.toString());
-	System.out.println(a.showRealArray());
-	a.addLast("input 4");
-	a.addLast("input 5");
-	a.addLast("input 6");
-	System.out.println("expecting [6 5 4 --|||-- 1 2 3]..." + a.toString());
-	System.out.println(a.showRealArray());
-	System.out.println("expect 6..." + a.getLast()); // expecting 6
-	System.out.println("expect 3..." + a.getFirst()); // expecting 3
-	System.out.println("expect 6..." + a.removeLast()); // expecting 6
-	System.out.println("expect 3..." + a.removeFirst()); // expecting 3
-	System.out.println("expecting [5 4 --|||-- 1 2]..." + a.toString());
-	System.out.println(a.showRealArray());
-       
-	System.out.println( a.removeFirst()); // expecting 2
-	System.out.println( a.removeFirst()); // expecting 1
-	System.out.println( a.removeFirst()); // expecting --|||--
-	System.out.println( a.removeFirst()); // expecting 4
-	System.out.println( a.removeFirst()); // expecting 5
-	System.out.println("expecting []..." + a.toString());
+	a.addLast("8");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
 
-	//System.out.println( a.removeFirst()); // expecting error
+	a.addLast("9");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
 
-	a.addFirst("--|||--");
-	a.addFirst("input 1");
-	a.addFirst("input 2");
-	a.addFirst("input 3");
-	a.addLast("input 4");
-	a.addLast("input 5");
-	//a.addLast("input 6");
-	System.out.println("expecting [6 5 4 --|||-- 1 2 3]..." + a.toString());
-	System.out.println(a.showRealArray());
+	a.addLast("10");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+	System.out.println("real array: " + a.showRealArray());
 
+	a.addLast("11");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+	System.out.println("real array: " + a.showRealArray());
 
-	System.out.println( a.removeLast()); // expecting 6
-	System.out.println( a.removeLast()); // expecting 5
-	System.out.println( a.removeLast()); // expecting 4
-	System.out.println( a.removeLast()); // expecting --||--
-	System.out.println( a.removeLast()); // expecting 1
-	System.out.println( a.removeLast()); // expecting 2
-	System.out.println( a.removeLast()); // expecting 3
+	a.addFirst("-3");
+	System.out.println(a.resize());
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+	System.out.println("real array: " + a.showRealArray());
+	
+	System.out.println(a.getFirst());
+	System.out.println(a.getLast());
 
-	System.out.println("expecting []..." + a.toString());
+	System.out.println(a.removeFirst());
+	System.out.println(a.removeLast());
 
-
-
-
-
-
-	MyDeque<Integer> b = new MyDeque<Integer>();
-	b.removeFirst();
-	b.removeLast();
-	b.getFirst();
-	b.getLast(); // all four b's throw exception as desired 
-	*/
-
+	System.out.println(a.HeadTailSize());
+	System.out.println(a.toString());
+	System.out.println("real array: " + a.showRealArray());
 
 	
+	System.out.println(a.getFirst());
+	System.out.println(a.getLast());
 
+	*/
 
     }
-   
-
-
 }
