@@ -5,12 +5,12 @@ public class MyDeque<T>{
     private Object[] data;
 
     public MyDeque(){
-	this(9);
+	this(7);
     }
     public MyDeque(int s){
 	data = new Object[s];
 	head = s/2;
-	tail = head-1;
+	tail = head+1;
 	size = 0;
     }
 
@@ -18,41 +18,47 @@ public class MyDeque<T>{
 	return "rothblatt.david";
     }
 
+    public void resize(){
+	if (size == data.length){
+	    // resize
+	}
+    }
+
     public void addFirst(T value){
-	if (head == data.length){
-	    head = 0;
+	resize();
+	head--;
+	if (head < 0){
+	    head = data.length-1;
 	}
 	data[head] = value;
-	head++;
-	if (size == 0) tail++;
 	size++;
     }
 
     public void addLast(T value){
-	if (tail < 0){
-	    tail = data.length-1;
+	resize();
+	tail++;
+	if (tail == data.length){
+	    tail = 0;
 	}
 	data[tail] = value;
-	tail--;
-	if (size == 0) head--;	
 	size++;
     }
 
     public T removeFirst(){
 	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[head];
-	head--; 
+	head++; 
 	size--;
-	if (head == -1) head = data.length - 1;
+	if (head == data.length) head = 0;
 	return value;
     }
 
     public T removeLast(){
 	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[tail];
-	tail++;
+	tail--;
 	size--;
-	if (tail == data.length) tail = 0;
+	if (tail == 0) tail = data.length-1;
 	return value;
     }
 
