@@ -20,8 +20,26 @@ public class MyDeque<T>{
 
     public void resize(){
 	if (size == data.length){
-	    // resize
+	    int l = size;
+	    Object[] copy = new Object[l*2];
+	    for (int i = 0; i < l; i++){
+		copy[i] = data[ (i + head) % l];
+	    }
+	    head = 0; 
+	    tail = l-1;
+	    data = copy;
 	}
+    }
+    
+    public String toString(){
+	String ans = "[ ";
+	if (size > 0){
+	    for (int i = 0; i < size; i++){
+		ans += data[ (i + head) % size] + " ";
+	    }
+	}
+	ans += "]";
+	return ans;
     }
 
     public void addFirst(T value){
@@ -72,15 +90,6 @@ public class MyDeque<T>{
 	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[tail];
 	return value;
-    }
-    
-    public String toString(){
-	String ans = "[";
-	for (int i = tail; i <= head; i++){
-	    ans += data[i] + " ";
-	}
-	ans += "]";
-	return ans;
     }
    
     public String showRealArray(){
