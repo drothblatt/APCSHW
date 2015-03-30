@@ -103,7 +103,7 @@ public class MyDeque<T>{
     }
 
     public static void main(String[]args){
-	
+	/*
 	MyDeque<String> a = new MyDeque<String>();
 
 	System.out.println(a.HeadTailSize());
@@ -198,7 +198,7 @@ public class MyDeque<T>{
 	
 	System.out.println(a.getFirst());
 	System.out.println(a.getLast());
-
+	*/
 	
     }
 }
