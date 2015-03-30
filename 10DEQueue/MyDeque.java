@@ -12,7 +12,6 @@ public class MyDeque<T>{
 	head = s/2;
 	tail = head-1;
 	size = 0;
-	start = head; 
     }
 
     public String name(){
@@ -104,7 +103,7 @@ public class MyDeque<T>{
     }
 
     public static void main(String[]args){
-	/*
+	
 	MyDeque<String> a = new MyDeque<String>();
 
 	System.out.println(a.HeadTailSize());
@@ -200,7 +199,6 @@ public class MyDeque<T>{
 	System.out.println(a.getFirst());
 	System.out.println(a.getLast());
 
-	*/
-
+	
     }
 }
