@@ -1,26 +1,26 @@
 import java.util.*;
 import java.io.*;
 
-public class BFS{
+public class Maze{
 
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
 
-    private class BNode{
+    private class Node{
 	private int r; // row
 	private int c; // column
 	private int d; // distance from starting spot
-	private BNode prev; // last spot
+	private Node prev; // last spot
 	
-	public BNode(int row, int col, int dist, BNode last){
+	public Node(int row, int col, int dist, Node last){
 	    r = row;
 	    c = col;
 	    prev = last;
 	    d = dist;
 	}
 	
-	public BNode(int row, int col, BNode last){
+	public Node(int row, int col, Node last){
 	    r = row;
 	    c = col; 
 	    prev = last;
@@ -36,14 +36,13 @@ public class BFS{
 	public int getDist(){
 	    return d; 
 	}
-	public BNode getPrev(){
+	public Node getPrev(){
 	    return prev;
 	}
-
     }
 
 
-    public BFS(String filename){
+    public Maze(String filename){
 	startx = -1;
 	starty = -1;
 	String ans = "";
@@ -80,22 +79,22 @@ public class BFS{
     }
 
     private String go(int x,int y){
-	return ("["+x+";"+y+"H");
+	return ("^[["+x+";"+y+"H");
     }
     
     private String clear(){
-	return  "[2J";
+	return  "^[[2J";
     }
 
     private String hide(){
-	return  "[?25l";
+	return  "^[[?25l";
     }
 
     private String show(){
-	return  "[?25h";
+	return  "^[[?25h";
     }
     private String invert(){
-	return  "[37";
+	return  "^[[37";
     }
 
 
@@ -124,7 +123,7 @@ public class BFS{
     }
     
     public static void main(String[]args){
-	BFS a = new BFS("data3.dat");
+        Maze a = new Maze("data3.dat");
 	System.out.println(a.toString());
 	
     }
