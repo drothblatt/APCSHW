@@ -127,7 +127,7 @@ public class Maze{
 	return solve(animate, 1);
     }
 
-    public boolean solve(boolean animate, int mode){
+    private boolean solve(boolean animate, int mode){
 	Frontier nexts = new Frontier(mode);
 	return true;
     }
