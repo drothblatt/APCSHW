@@ -139,16 +139,14 @@ public class Maze{
 	private int m;
 	private MyDeque<Node> d = new MyDeque<Node>(15);
 
-	public Froniter(int mode){
+	public Frontier(int mode){
 	    m = mode;
 	}
-	public void add(){
+	public void add(Node loc){
 	    if (m == 0){
-		d.addFirst();
+		d.addFirst(loc);
 	    } else if (m == 1){
-		d.addLast();
-	    } else {
-		throw new Exception();
+		d.addLast(loc);
 	    }
 	}
 	
@@ -157,8 +155,6 @@ public class Maze{
 		d.removeFirst();
 	    } else if (m == 1){
 		d.removeLast();
-	    } else {
-		throw new Exception();
 	    }
 	}
     }
