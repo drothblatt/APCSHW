@@ -47,6 +47,9 @@ public class Maze{
 	public Node getPrev(){
 	    return prev;
 	}
+	public String toString(){
+	    return "(" + r + ", " + c + ")";
+	}
     }
 
 
@@ -131,6 +134,38 @@ public class Maze{
 	Frontier nexts = new Frontier(mode);
 	return true;
     }
+
+    public class Frontier{
+	private int m;
+	private MyDeque<Node> d = new MyDeque<Node>(15);
+
+	public Froniter(int mode){
+	    m = mode;
+	}
+	public void add(){
+	    if (m == 0){
+		d.addFirst();
+	    } else if (m == 1){
+		d.addLast();
+	    } else {
+		throw new Exception();
+	    }
+	}
+	
+	public void remove(){
+	    if (m == 0){
+		d.removeFirst();
+	    } else if (m == 1){
+		d.removeLast();
+	    } else {
+		throw new Exception();
+	    }
+	}
+    }
+	    
+
+
+		
 
 
 
