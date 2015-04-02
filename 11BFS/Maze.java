@@ -14,6 +14,7 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
+    private Node start;
 
     private class Node{
 	private int r; // row
@@ -87,6 +88,7 @@ public class Maze{
 		starty = i/maxx;
 	    }
 	}
+	start = new Node(startx, starty, null);
     }
 
     public void clearTerminal(){
@@ -132,7 +134,15 @@ public class Maze{
 
     private boolean solve(boolean animate, int mode){
 	Frontier nexts = new Frontier(mode);
-	return true;
+	boolean solFound = false;
+	nexts.add(start);
+	while(!solFound){
+	    
+	    
+
+
+
+	}
     }
 
     public class Frontier{
@@ -144,19 +154,16 @@ public class Maze{
 	}
 	public void add(Node loc){
 	    if (m == 0){
-		d.addFirst(loc);
-	    } else if (m == 1){
 		d.addLast(loc);
+	    } else if (m == 1){
+		d.addFirst(loc);
 	    }
 	}
 	
 	public void remove(){
-	    if (m == 0){
-		d.removeFirst();
-	    } else if (m == 1){
-		d.removeLast();
-	    }
+	    d.removeFirst();
 	}
+
     }
 	    
 
