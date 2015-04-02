@@ -21,6 +21,13 @@ public class Maze{
 	private int c; // column
 	private int d; // distance from starting spot
 	private Node prev; // last spot
+
+	public Node(int row, int col){
+	    r = row;
+	    c = col;
+	    d = 0;
+	    prev = null;
+	}
 	
 	public Node(int row, int col, int dist, Node last){
 	    r = row;
@@ -88,7 +95,7 @@ public class Maze{
 		starty = i/maxx;
 	    }
 	}
-	start = new Node(startx, starty, null);
+	start = new Node(startx, starty);
     }
 
     public void clearTerminal(){
@@ -133,16 +140,35 @@ public class Maze{
     }
 
     private boolean solve(boolean animate, int mode){
+	System.out.println(toString(true));
 	Frontier nexts = new Frontier(mode);
 	boolean solFound = false;
 	nexts.add(start);
 	while(!solFound){
-	    
-	    
-
-
-
+	    if( moves(nexts) ){
+		solFound = true;
+	    }
 	}
+	return solFound;
+    }
+
+    private boolean moves(Frontier a){
+	Node p = a.remove();
+	if (maze[p.getRow()][p.getCol()] == 'E'){
+	    return true;
+	} 
+	if (maze[p.getRow()][p.getCol()] == ' '){
+	    maze[p.getRow()][p.getCol()] = '@';
+	    if ( maze[p.getRow()+1][p.getCol()] == ' ' )
+		{ a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p)); }
+	    if ( maze[p.getRow()-1][p.getCol()] == ' ' )
+		{ a.add(new Node(p.getRow()-1, p.getCol(), p.getDist()+1, p)); }
+	    if ( maze[p.getRow()][p.getCol()+1] == ' ' )
+		{ a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); }
+	    if ( maze[p.getRow()][p.getCol()-1] == ' ' )
+		{ a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); }
+	}
+	return false;
     }
 
     public class Frontier{
@@ -160,8 +186,8 @@ public class Maze{
 	    }
 	}
 	
-	public void remove(){
-	    d.removeFirst();
+	public Node remove(){
+	    return d.removeFirst();
 	}
 
     }
@@ -179,8 +205,8 @@ public class Maze{
 
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
-	System.out.println(a.toString(false));
-	
+	//System.out.println(a.toString(false));
+	System.out.println(a.solveBFS(true));
     }
    
 
