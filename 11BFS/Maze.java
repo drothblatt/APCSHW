@@ -14,7 +14,7 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
-    private Node start;
+    private Node start, ans;
 
     private class Node{
 	private int r; // row
@@ -113,7 +113,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if (animate){
-	    return clear+hide+go(0,0)+toString()+"\n"+show;
+	    return hide+go(0,0)+toString()+"\n"+show;
 	} else {
 	    return toString();
 	}
@@ -145,29 +145,41 @@ public class Maze{
 	boolean solFound = false;
 	nexts.add(start);
 	while(!solFound){
-	    if( moves(nexts) ){
+	    if( movesBFS(nexts) ){
 		solFound = true;
 	    }
 	}
+	System.out.println(nexts.toString());
+	System.out.println(ans.toString());
 	return solFound;
     }
 
-    private boolean moves(Frontier a){
+    private boolean movesBFS(Frontier a){
+	System.out.println("Frontier Before: " + a.toString() );	
 	Node p = a.remove();
+	System.out.println("Node p: " + p.toString() );
+
 	if (maze[p.getRow()][p.getCol()] == 'E'){
+	    ans = p; 
 	    return true;
 	} 
-	if (maze[p.getRow()][p.getCol()] == ' '){
+	if (maze[p.getRow()][p.getCol()] == ' ' || maze[p.getRow()][p.getCol()] == 'S'){
+	    System.out.println("heyo 167");
 	    maze[p.getRow()][p.getCol()] = '@';
-	    if ( maze[p.getRow()+1][p.getCol()] == ' ' )
+	    System.out.println("heyo 169");
+	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' )
 		{ a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p)); }
-	    if ( maze[p.getRow()-1][p.getCol()] == ' ' )
+	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E')
 		{ a.add(new Node(p.getRow()-1, p.getCol(), p.getDist()+1, p)); }
-	    if ( maze[p.getRow()][p.getCol()+1] == ' ' )
+	    if ( maze[p.getRow()][p.getCol()+1] == ' ' || maze[p.getRow()][p.getCol()+1] == 'E' )
 		{ a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); }
-	    if ( maze[p.getRow()][p.getCol()-1] == ' ' )
+	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E')
 		{ a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); }
+	    System.out.println("heyo 178");
 	}
+	System.out.println("Frontier After: " + a.toString() + " \n"  );
+	System.out.println(this);
+
 	return false;
     }
 
@@ -190,18 +202,12 @@ public class Maze{
 	    return d.removeFirst();
 	}
 
+	public String toString(){
+	    return d.toString();
+	}
+
     }
 	    
-
-
-		
-
-
-
-
-
-
-
 
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
