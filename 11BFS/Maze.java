@@ -14,7 +14,7 @@ public class Maze{
     private char[][]maze;
     private int maxx,maxy;
     private int startx,starty;
-    private Node start, ans;
+    private Node start, sol;
 
     private class Node{
 	private int r; // row
@@ -149,8 +149,7 @@ public class Maze{
 		solFound = true;
 	    }
 	}
-	System.out.println(nexts.toString());
-	System.out.println(ans.toString());
+	System.out.println("sol:" + sol.toString());
 	return solFound;
     }
 
@@ -160,7 +159,7 @@ public class Maze{
 	System.out.println("Node p: " + p.toString() );
 
 	if (maze[p.getRow()][p.getCol()] == 'E'){
-	    ans = p; 
+	    sol = p; 
 	    return true;
 	} 
 	if (maze[p.getRow()][p.getCol()] == ' ' || maze[p.getRow()][p.getCol()] == 'S'){
