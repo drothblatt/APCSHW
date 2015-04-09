@@ -140,7 +140,7 @@ public class Maze{
     }
 
     private boolean solve(boolean animate, int mode){
-	System.out.println(toString(true));
+	System.out.println(toString(animate));
 	Frontier nexts = new Frontier(mode);
 	boolean solFound = false;
 	nexts.add(start);
@@ -149,23 +149,25 @@ public class Maze{
 		solFound = true;
 	    }
 	}
-	System.out.println("sol:" + sol.toString());
+	Node bt = sol.getPrev();
+	while (bt.getDist() > 0){
+	    maze[bt.getRow()][bt.getCol()] = '@';
+	    bt = bt.getPrev();
+	}   
+	System.out.println(this);
 	return solFound;
     }
 
     private boolean movesBFS(Frontier a){
-	System.out.println("Frontier Before: " + a.toString() );	
 	Node p = a.remove();
-	System.out.println("Node p: " + p.toString() );
-
 	if (maze[p.getRow()][p.getCol()] == 'E'){
 	    sol = p; 
 	    return true;
 	} 
 	if (maze[p.getRow()][p.getCol()] == ' ' || maze[p.getRow()][p.getCol()] == 'S'){
-	    System.out.println("heyo 167");
-	    maze[p.getRow()][p.getCol()] = '@';
-	    System.out.println("heyo 169");
+	    if ( maze[p.getRow()][p.getCol()] == ' ' ){
+		maze[p.getRow()][p.getCol()] = '.';
+	    }
 	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' )
 		{ a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p)); }
 	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E')
@@ -174,11 +176,7 @@ public class Maze{
 		{ a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); }
 	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E')
 		{ a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); }
-	    System.out.println("heyo 178");
 	}
-	System.out.println("Frontier After: " + a.toString() + " \n"  );
-	System.out.println(this);
-
 	return false;
     }
 
@@ -210,11 +208,13 @@ public class Maze{
 
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
-	//System.out.println(a.toString(false));
-	System.out.println(a.solveBFS(true));
+        a.solveBFS(true);
     }
    
-
+    // To-do List
+    // - DFS
+    // - Fix toString(animate)
+    // - Account for an unsolvable maze
 
 
 
