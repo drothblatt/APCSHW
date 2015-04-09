@@ -93,7 +93,7 @@ public class MyDeque<T>{
 	T value = (T)data[tail];
 	return value;
     }
-   
+
     public String showRealArray(){
 	return Arrays.toString(data);
     }
