@@ -242,7 +242,7 @@ public class Maze{
 
     }
    
-    // To-do List
+    // To-do List...
     // - Fix toString(animate)
     // - Account for an unsolvable maze
 
