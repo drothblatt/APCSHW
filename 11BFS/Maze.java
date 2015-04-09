@@ -161,6 +161,14 @@ public class Maze{
 	return ans;
     }
 
+    public boolean solveBFS(){
+	return solveBFS(false);
+    }
+
+    public boolean solveDFS(){
+	return solveDFS(false);
+    }
+
 
     public boolean solveBFS(boolean animate){
 	System.out.println("\nBFS search...\n");
@@ -207,7 +215,7 @@ public class Maze{
 	} 
 	if (maze[p.getRow()][p.getCol()] == ' ' || maze[p.getRow()][p.getCol()] == 'S'){
 	    if ( maze[p.getRow()][p.getCol()] == ' ' ){
-		maze[p.getRow()][p.getCol()] = '.';
+		maze[p.getRow()][p.getCol()] = 'x';
 	    }
 	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' ){
 		a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p));
