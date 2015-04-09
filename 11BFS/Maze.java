@@ -23,42 +23,67 @@ public class Maze{
 	private int d; // distance from starting spot
 	private Node prev; // last spot
 
-	public Node(int row, int col){
+	private Node(int row, int col){
 	    r = row;
 	    c = col;
 	    d = 0;
 	    prev = null;
 	}
 	
-	public Node(int row, int col, int dist, Node last){
+	private Node(int row, int col, int dist, Node last){
 	    r = row;
 	    c = col;
 	    prev = last;
 	    d = dist;
 	}
 	
-	public Node(int row, int col, Node last){
+	private Node(int row, int col, Node last){
 	    r = row;
 	    c = col; 
 	    prev = last;
 	    d = last.getDist();
 	}
 	    
-	public int getRow(){
+	private int getRow(){
 	    return r;
 	}
-	public int getCol(){
+	private int getCol(){
 	    return c;
 	}
-	public int getDist(){
+	private int getDist(){
 	    return d; 
 	}
-	public Node getPrev(){
+	private Node getPrev(){
 	    return prev;
 	}
 	public String toString(){
 	    return "(" + r + ", " + c + ")";
 	}
+    }
+
+    private class Frontier{
+	private int m;
+	private MyDeque<Node> d = new MyDeque<Node>(15);
+
+	private Frontier(int mode){
+	    m = mode;
+	}
+	private void add(Node loc){
+	    if (m == 0){
+		d.addLast(loc);
+	    } else if (m == 1){
+		d.addFirst(loc);
+	    }
+	}
+	
+	private Node remove(){
+	    return d.removeFirst();
+	}
+
+	public String toString(){
+	    return d.toString();
+	}
+
     }
 
 
@@ -143,7 +168,7 @@ public class Maze{
     }
 
     private boolean solve(boolean animate, int mode){
-	System.out.println(toString(animate));
+	//System.out.println(toString(animate));
 	Frontier nexts = new Frontier(mode);
 	boolean solFound = false;
 	nexts.add(start);
@@ -197,38 +222,15 @@ public class Maze{
 	//}
 	//System.out.println(this);
 	return false;
-    }
-
-    public class Frontier{
-	private int m;
-	private MyDeque<Node> d = new MyDeque<Node>(15);
-
-	public Frontier(int mode){
-	    m = mode;
-	}
-	public void add(Node loc){
-	    if (m == 0){
-		d.addLast(loc);
-	    } else if (m == 1){
-		d.addFirst(loc);
-	    }
-	}
-	
-	public Node remove(){
-	    return d.removeFirst();
-	}
-
-	public String toString(){
-	    return d.toString();
-	}
-
-    }
-	    
+    }	    
 
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
+	Maze b = new Maze("data3.dat");
         //a.solveBFS(true);
-	a.solveDFS(false);
+	a.solveBFS(false);
+	b.solveDFS(false);
+
     }
    
     // To-do List
