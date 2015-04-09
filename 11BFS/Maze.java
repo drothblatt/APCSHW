@@ -132,10 +132,12 @@ public class Maze{
 
 
     public boolean solveBFS(boolean animate){
+	System.out.println("\nBFS search...\n");
 	return solve(animate, 0);
     }
 
     public boolean solveDFS(boolean animate){
+	System.out.println("\nDFS search...\n");
 	return solve(animate, 1);
     }
 
@@ -145,7 +147,7 @@ public class Maze{
 	boolean solFound = false;
 	nexts.add(start);
 	while(!solFound){
-	    if( movesBFS(nexts) ){
+	    if( findE(nexts) ){
 		solFound = true;
 	    }
 	}
@@ -158,7 +160,7 @@ public class Maze{
 	return solFound;
     }
 
-    private boolean movesBFS(Frontier a){
+    private boolean findE(Frontier a){
 	Node p = a.remove();
 	if (maze[p.getRow()][p.getCol()] == 'E'){
 	    sol = p; 
@@ -177,6 +179,7 @@ public class Maze{
 	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E')
 		{ a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); }
 	}
+	System.out.println(this);
 	return false;
     }
 
@@ -208,11 +211,11 @@ public class Maze{
 
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
-        a.solveBFS(true);
+        //a.solveBFS(true);
+	a.solveDFS(false);
     }
    
     // To-do List
-    // - DFS
     // - Fix toString(animate)
     // - Account for an unsolvable maze
 
