@@ -233,12 +233,27 @@ public class Maze{
 	return false;
     }	    
 
+    public int[] solutionCoordinates(){ 
+	if (sol == null){
+	    return new int[0];
+	}
+	int[] retA = new int[(sol.getDist()+1)*2];
+	Node current = sol;
+	for (int i = (sol.getDist()+1)*2-1; i >= 0; i-=2 ){
+	    retA[i] = current.getCol();
+	    retA[i-1] = current.getRow();
+	    current = current.getPrev();
+	}
+	return retA;
+    } 
+
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
 	Maze b = new Maze("data3.dat");
         //a.solveBFS(true);
 	a.solveBFS(false);
-	b.solveDFS(false);
+	System.out.println( Arrays.toString(a.solutionCoordinates()) );
+	//b.solveDFS(false);
 
     }
    
