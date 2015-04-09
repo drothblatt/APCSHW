@@ -228,7 +228,7 @@ public class Maze{
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
         //a.solveBFS(true);
-	a.solveBFS(false);
+	a.solveDFS(false);
     }
    
     // To-do List
