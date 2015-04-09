@@ -184,14 +184,15 @@ public class Maze{
 	//System.out.println(toString(animate));
 	Frontier nexts = new Frontier(mode);
 	boolean solFound = false;
+	boolean noSol = false;
 	nexts.add(start);
 	while(!solFound){
-	    if( findE(nexts) ){
-		solFound = true;
+	    if( nexts.size() == 0 ){
+		System.out.println("No Solution Found\n" + this );
+		return false;
+	    } else if ( findE(nexts) ){
+	        solFound = true;
 	    }
-	}
-	if ( nexts.size() == 0 ){
-	    return false;
 	}
 	    
 	if (solFound){
@@ -208,7 +209,6 @@ public class Maze{
 
     private boolean findE(Frontier a){
 	Node p = a.remove();
-	//boolean newSpot = false;
 	if (maze[p.getRow()][p.getCol()] == 'E'){
 	    sol = p; 
 	    return true;
@@ -219,25 +219,17 @@ public class Maze{
 	    }
 	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' ){
 		a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p));
-		//newSpot = true;
 	    }
 	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E'){
 		a.add(new Node(p.getRow()-1, p.getCol(), p.getDist()+1, p));
-		//newSpot = true;
 	    }
 	    if ( maze[p.getRow()][p.getCol()+1] == ' ' || maze[p.getRow()][p.getCol()+1] == 'E' ){
 		a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); 
-		//newSpot = true;
 	    }
 	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E'){
 		a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); 
-		//newSpot = true;
 	    }
 	}
-	//if (!newSpot){
-	//    solvable = false;
-	//}
-	//System.out.println(this);
 	return false;
     }	    
 
@@ -256,11 +248,11 @@ public class Maze{
     } 
 
     public static void main(String[]args){
-        Maze a = new Maze("data3.dat");
+        Maze a = new Maze("data2.dat");
 	Maze b = new Maze("data3.dat");
         //a.solveBFS(true);
 	a.solveBFS(false);
-	System.out.println( Arrays.toString(a.solutionCoordinates()) );
+	//System.out.println( Arrays.toString(a.solutionCoordinates()) );
 	//b.solveDFS(false);
 
     }
