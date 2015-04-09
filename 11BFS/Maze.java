@@ -15,6 +15,7 @@ public class Maze{
     private int maxx,maxy;
     private int startx,starty;
     private Node start, sol;
+    private boolean solvable = true;
 
     private class Node{
 	private int r; // row
@@ -113,7 +114,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if (animate){
-	    return hide+go(0,0)+toString()+"\n"+show;
+	    return clear+hide+go(0,0)+toString()+"\n"+hide;
 	} else {
 	    return toString();
 	}
@@ -151,17 +152,21 @@ public class Maze{
 		solFound = true;
 	    }
 	}
-	Node bt = sol.getPrev();
-	while (bt.getDist() > 0){
-	    maze[bt.getRow()][bt.getCol()] = '@';
-	    bt = bt.getPrev();
-	}   
-	System.out.println(this);
-	return solFound;
+	if (solFound){
+	    Node bt = sol.getPrev();
+	    while (bt.getDist() > 0){
+		maze[bt.getRow()][bt.getCol()] = '@';
+		bt = bt.getPrev();
+	    }   
+	    System.out.println(this);
+	    return true;
+	} 
+	return false;
     }
 
     private boolean findE(Frontier a){
 	Node p = a.remove();
+	//boolean newSpot = false;
 	if (maze[p.getRow()][p.getCol()] == 'E'){
 	    sol = p; 
 	    return true;
@@ -170,16 +175,27 @@ public class Maze{
 	    if ( maze[p.getRow()][p.getCol()] == ' ' ){
 		maze[p.getRow()][p.getCol()] = '.';
 	    }
-	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' )
-		{ a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p)); }
-	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E')
-		{ a.add(new Node(p.getRow()-1, p.getCol(), p.getDist()+1, p)); }
-	    if ( maze[p.getRow()][p.getCol()+1] == ' ' || maze[p.getRow()][p.getCol()+1] == 'E' )
-		{ a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); }
-	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E')
-		{ a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); }
+	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' ){
+		a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p));
+		//newSpot = true;
+	    }
+	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E'){
+		a.add(new Node(p.getRow()-1, p.getCol(), p.getDist()+1, p));
+		//newSpot = true;
+	    }
+	    if ( maze[p.getRow()][p.getCol()+1] == ' ' || maze[p.getRow()][p.getCol()+1] == 'E' ){
+		a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); 
+		//newSpot = true;
+	    }
+	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E'){
+		a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); 
+		//newSpot = true;
+	    }
 	}
-	System.out.println(this);
+	//if (!newSpot){
+	//    solvable = false;
+	//}
+	//System.out.println(this);
 	return false;
     }
 
@@ -212,7 +228,7 @@ public class Maze{
     public static void main(String[]args){
         Maze a = new Maze("data3.dat");
         //a.solveBFS(true);
-	a.solveDFS(false);
+	a.solveBFS(false);
     }
    
     // To-do List
