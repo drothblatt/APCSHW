@@ -80,9 +80,14 @@ public class Maze{
 	    return d.removeFirst();
 	}
 
+	private int size(){
+	    return d.size();
+	}	
+
 	public String toString(){
 	    return d.toString();
 	}
+
 
     }
 
@@ -177,6 +182,10 @@ public class Maze{
 		solFound = true;
 	    }
 	}
+	if ( nexts.size() == 0 ){
+	    return false;
+	}
+	    
 	if (solFound){
 	    Node bt = sol.getPrev();
 	    while (bt.getDist() > 0){
