@@ -258,7 +258,7 @@ public class Maze{
         Maze a = new Maze("data3.dat");
 	Maze b = new Maze("data3.dat");
         //a.solveBFS(true);
-	a.solveBFS(true);
+	a.solveDFS(false);
 	//System.out.println( Arrays.toString(a.solutionCoordinates()) );
 	//b.solveDFS(false);
 
@@ -266,7 +266,6 @@ public class Maze{
    
     // To-do List...
     // - Fix toString(animate)
-    // - Account for an unsolvable maze
 
 
 
