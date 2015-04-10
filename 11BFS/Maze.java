@@ -6,6 +6,7 @@ public class Maze{
     private static final String clear =  "\033[2J";
     private static final String hide =  "\033[?25l";
     private static final String show =  "\033[?25h";
+    private static final String invert = "\033[37";
 
     private String go(int x,int y){
 	return ("\033[" + x + ";" + y + "H");
@@ -144,7 +145,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if (animate){
-	    return clear+hide+go(0,0)+toString()+"\n"+hide;
+	    return hide+invert+go(0,0)+toString()+"\n"+show;
 	} else {
 	    return toString();
 	}
@@ -191,6 +192,9 @@ public class Maze{
 		System.out.println("No Solution Found\n" + this );
 		return false;
 	    } else if ( findE(nexts) ){
+		if (animate){
+		    System.out.println(toString(animate));
+		}
 	        solFound = true;
 	    }
 	}
@@ -198,6 +202,9 @@ public class Maze{
 	if (solFound){
 	    Node bt = sol.getPrev();
 	    while (bt.getDist() > 0){
+		if (animate){
+		    System.out.println(toString(animate));
+		}
 		maze[bt.getRow()][bt.getCol()] = '@';
 		bt = bt.getPrev();
 	    }   
@@ -248,10 +255,10 @@ public class Maze{
     } 
 
     public static void main(String[]args){
-        Maze a = new Maze("data2.dat");
+        Maze a = new Maze("data3.dat");
 	Maze b = new Maze("data3.dat");
         //a.solveBFS(true);
-	a.solveBFS(false);
+	a.solveBFS(true);
 	//System.out.println( Arrays.toString(a.solutionCoordinates()) );
 	//b.solveDFS(false);
 
