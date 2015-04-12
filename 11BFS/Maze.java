@@ -147,7 +147,7 @@ public class Maze{
 	if (animate){
 	    return clear+hide+go(0,0)+toString()+"\n"+show;
 	} else {
-	    return toString();
+	    return toString() + "\n";
 	}
     }
     
@@ -258,9 +258,9 @@ public class Maze{
         Maze b = new Maze("data2.dat");
         Maze c = new Maze("data3.dat");
 	// BFS w/ animation
-        a.solveBFS(true);
+        //a.solveBFS(true);
 	//b.solveBFS(true);
-	//c.solveBFS(true);
+	c.solveBFS(true);
 	// BFS w/out animation
 	//a.solveBFS(false);
 	//b.solveBFS(false);
@@ -273,8 +273,7 @@ public class Maze{
 	//a.solveDFS(false);
 	//b.solveDFS(false);
 	//c.solveDFS(false);
-	
-	System.out.println( Arrays.toString(a.solutionCoordinates()) + "\n" );
+	System.out.println("\n" + Arrays.toString(c.solutionCoordinates()) + "\n" );
 
     }
    
