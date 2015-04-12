@@ -145,7 +145,7 @@ public class Maze{
 
     public String toString(boolean animate){
 	if (animate){
-	    return hide+invert+go(0,0)+toString()+"\n"+show;
+	    return clear+hide+go(0,0)+toString()+"\n"+show;
 	} else {
 	    return toString();
 	}
@@ -172,29 +172,23 @@ public class Maze{
 
 
     public boolean solveBFS(boolean animate){
-	System.out.println("\nBFS search...\n");
 	return solve(animate, 0);
     }
 
     public boolean solveDFS(boolean animate){
-	System.out.println("\nDFS search...\n");
 	return solve(animate, 1);
     }
 
     private boolean solve(boolean animate, int mode){
-	//System.out.println(toString(animate));
 	Frontier nexts = new Frontier(mode);
 	boolean solFound = false;
 	boolean noSol = false;
 	nexts.add(start);
 	while(!solFound){
 	    if( nexts.size() == 0 ){
-		System.out.println("No Solution Found\n" + this );
+		System.out.println( toString(animate) + "\nNo Solution Found\n" );
 		return false;
-	    } else if ( findE(nexts) ){
-		if (animate){
-		    System.out.println(toString(animate));
-		}
+	    } else if ( findE(nexts, animate) ){
 	        solFound = true;
 	    }
 	}
@@ -204,17 +198,22 @@ public class Maze{
 	    while (bt.getDist() > 0){
 		if (animate){
 		    System.out.println(toString(animate));
+		    wait(70);
 		}
 		maze[bt.getRow()][bt.getCol()] = '@';
 		bt = bt.getPrev();
 	    }   
-	    System.out.println(this);
+	    System.out.println(toString(animate));
 	    return true;
 	} 
 	return false;
     }
 
-    private boolean findE(Frontier a){
+    private boolean findE(Frontier a, boolean animate){
+	if (animate){
+	    System.out.println(toString(animate));
+	    wait(70);
+	}
 	Node p = a.remove();
 	if (maze[p.getRow()][p.getCol()] == 'E'){
 	    sol = p; 
@@ -255,17 +254,32 @@ public class Maze{
     } 
 
     public static void main(String[]args){
-        Maze a = new Maze("data3.dat");
-	Maze b = new Maze("data3.dat");
-        //a.solveBFS(true);
-	a.solveDFS(false);
-	//System.out.println( Arrays.toString(a.solutionCoordinates()) );
+        Maze a = new Maze("data1.dat");
+        Maze b = new Maze("data2.dat");
+        Maze c = new Maze("data3.dat");
+	// BFS w/ animation
+        a.solveBFS(true);
+	//b.solveBFS(true);
+	//c.solveBFS(true);
+	// BFS w/out animation
+	//a.solveBFS(false);
+	//b.solveBFS(false);
+	//c.solveBFS(false);
+	// DFS w/ animation
+	//a.solveDFS(true);
+	//b.solveDFS(true);
+	//c.solveDFS(true);
+	// DFS w/out animation
+	//a.solveDFS(false);
 	//b.solveDFS(false);
+	//c.solveDFS(false);
+	
+	System.out.println( Arrays.toString(a.solutionCoordinates()) + "\n" );
 
     }
    
     // To-do List...
-    // - Fix toString(animate)
+    // DONE
 
 
 
