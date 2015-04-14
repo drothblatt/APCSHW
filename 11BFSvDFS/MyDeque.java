@@ -3,12 +3,14 @@ import java.util.*;
 public class MyDeque<T>{
     private int head, tail, size;
     private Object[] data;
+    private int[] d2goal;
 
     public MyDeque(){
 	this(7);
     }
     public MyDeque(int s){
 	data = new Object[s];
+	d2goal = new int[s];
 	head = s/2;
 	tail = head-1;
 	size = 0;
@@ -20,13 +22,16 @@ public class MyDeque<T>{
 
     public boolean resize(){
 	if ( size == data.length ){
-	    Object[] copy = new Object[size*2]; 
+	    Object[] copyData = new Object[size*2];
+	    int[] copyD2goal = new int[size*2];
 	    for (int i = 0; i < size; i++){
-		copy[i] = data[ (i + head) % (size)];
+		copyData[i] = data[ (i + head) % (size)];
+		copyD2goal[i] = d2goal[ (i + head) % (size) ];
 	    }
 	    head = 0; 
 	    tail = size-1;
-	    data = copy;
+	    data = copyData;
+	    d2goal = copyD2goal;
 	    return true;
 	}	    
 	return false;
@@ -63,6 +68,17 @@ public class MyDeque<T>{
 	data[tail] = value;
 	size++;
     }
+    
+    public void add(T value, int dist){
+	int pos;
+	if (tail+1 == data.length){
+	    pos = 0;
+	} else{
+	    pos = tail+1;
+	}
+	addLast(value);
+	d2goal[pos] = dist;
+    }
 
     public T removeFirst(){
 	if (size == 0) throw new NoSuchElementException();
@@ -82,6 +98,10 @@ public class MyDeque<T>{
 	return value;
     }
 
+    public T removeSmallest(){
+
+    }
+
     public T getFirst(){
 	if (size == 0) throw new NoSuchElementException();
 	T value = (T)data[head];
@@ -98,8 +118,12 @@ public class MyDeque<T>{
 	return size;
     }
    
-    public String showRealArray(){
+    public String showObjectArray(){
 	return Arrays.toString(data);
+    }
+
+    public String showD2GoalArray(){
+	return Arrays.toString(d2goal);
     }
 
     public String HeadTailSize(){
