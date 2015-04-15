@@ -10,7 +10,7 @@ public class Driver{
 	// BFS w/ animation
         //a.solveBFS(true);
 	//b.solveBFS(true);
-	c.solveBFS(true);
+	//c.solveBFS(true);
 	// BFS w/out animation
 	//a.solveBFS(false);
 	//b.solveBFS(false);
@@ -18,7 +18,7 @@ public class Driver{
 	// DFS w/ animation
 	//a.solveDFS(true);
 	//b.solveDFS(true);
-	//c.solveDFS(true);
+	c.solveDFS(true);
 	// DFS w/out animation
 	//a.solveDFS(false);
 	//b.solveDFS(false);

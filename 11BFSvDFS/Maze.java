@@ -142,6 +142,10 @@ public class Maze{
 	start = new Node(startx, starty);
     }
 
+    public String name(){
+	return "rothblatt.david";
+    }
+
     public void clearTerminal(){
 	System.out.println(clear);
     }
