@@ -83,10 +83,9 @@ public class Maze{
 	private Node remove(){
 	    if (m < 2){
 		return d.removeFirst();
-	    } else if (m == 2 || m == 3 ) {
-		return d.removeSmallest();
-	    }
-	    return null;
+	    } 
+	    return d.removeSmallest();
+	    
 	}
 
 	private int size(){
