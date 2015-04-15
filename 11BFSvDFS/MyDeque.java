@@ -78,6 +78,7 @@ public class MyDeque<T>{
 	}
 	addLast(value);
 	d2goal[pos] = dist;
+	System.out.println("Added.\n" + showObjectArray() + "\n" + showD2GoalArray());
     }
 
     public T removeFirst(){
@@ -99,7 +100,22 @@ public class MyDeque<T>{
     }
 
     public T removeSmallest(){
-
+	if (size == 0) throw new NoSuchElementException();
+	int minInd = 0;
+	int minVal = d2goal[head];
+	for (int i = 0; i < size; i++){
+	    if ( d2goal[ (i + head) % (size)] < minVal ){
+		minVal = d2goal[ (i + head) % (size)];
+		minInd = (i+head) % (size);
+	    }
+        }
+	size--;
+	for (int i = minInd; i < size; i++){
+	    data[i] = data[i+1];
+	    d2goal[i] = d2goal[i+1];
+	}
+	T value = (T)data[minInd];
+	return value;
     }
 
     public T getFirst(){
