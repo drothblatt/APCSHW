@@ -14,7 +14,7 @@ public class Maze{
 
     private char[][]maze;
     private int maxx,maxy;
-    private int startx,starty;
+    private int startx,starty,endx,endy;
     private Node start, sol;
     private boolean solvable = true;
 
@@ -70,15 +70,23 @@ public class Maze{
 	    m = mode;
 	}
 	private void add(Node loc){
-	    if (m == 0){
+	    if (m == 0){ // BFS
 		d.addLast(loc);
 	    } else if (m == 1){
-		d.addFirst(loc);
-	    }
+		d.addFirst(loc); // DFS
+	    } else if (m == 2 || m == 3){
+		int dTo = (endx - loc.getRow() ) + (endy - loc.getCol() ); // delta x + delta y
+		d.add(loc, dTo );
+	    } 
 	}
 	
 	private Node remove(){
-	    return d.removeFirst();
+	    if (m < 2){
+		return d.removeFirst();
+	    } else if (m == 2 || m == 3 ) {
+		return d.removeSmallest();
+	    }
+	    return null;
 	}
 
 	private int size(){
@@ -96,6 +104,8 @@ public class Maze{
     public Maze(String filename){
 	startx = -1;
 	starty = -1;
+	endx = -1;
+	endy = -1;
 	String ans = "";
 	try{
 	    Scanner in = new Scanner(new File(filename));
@@ -125,6 +135,9 @@ public class Maze{
 	    if(c=='S'){
 		startx = i%maxx;
 		starty = i/maxx;
+	    } if (c == 'E'){
+		endx = i%maxx;
+		endy = i/maxx;
 	    }
 	}
 	start = new Node(startx, starty);
