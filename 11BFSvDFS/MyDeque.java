@@ -101,7 +101,7 @@ public class MyDeque<T>{
 
     public T removeSmallest(){
 	if (size == 0) throw new NoSuchElementException();
-	int minInd = 0;
+	int minInd = head;
 	int minVal = d2goal[head];
 	for (int i = 0; i < size; i++){
 	    if ( d2goal[ (i + head) % (size)] < minVal ){
@@ -110,9 +110,9 @@ public class MyDeque<T>{
 	    }
         }
 	size--;
-	for (int i = minInd; i < size; i++){
-	    data[i] = data[i+1];
-	    d2goal[i] = d2goal[i+1];
+	for (int i = minInd; i < size+minInd; i++){
+	    data[i%size] = data[i%size+1];
+	    d2goal[i%size] = d2goal[i%size+1];
 	}
 	T value = (T)data[minInd];
 	return value;
