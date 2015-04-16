@@ -48,10 +48,7 @@ public class Nodeb{
     public static void main(String[]argggs){
 	MyDeque foo = new MyDeque();
 
-	Nodeb d = new Nodeb(0,0);
-	foo.add(d, 0);
-
-	Nodeb i = new Nodeb(2, 3, d); 
+	Nodeb i = new Nodeb(2, 3); 
 	foo.add(i, 5);
 
 	Nodeb e = new Nodeb(1, 0, i); 

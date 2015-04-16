@@ -67,6 +67,7 @@ public class MyDeque<T>{
 	}
 	data[tail] = value;
 	size++;
+	System.out.println(size());
     }
     
     public void add(T value, int dist){
@@ -100,20 +101,25 @@ public class MyDeque<T>{
     }
 
     public T removeSmallest(){
+	System.out.println(showObjectArray() + "\n" + showD2GoalArray() 
+			   + "\nPresize:" + size);
 	if (size == 0) throw new NoSuchElementException();
 	int minInd = head;
-	int minVal = d2goal[head];
+	System.out.println("hi");
 	for (int i = 0; i < size; i++){
-	    if ( d2goal[ (i + head) % (size)] < minVal ){
-		minVal = d2goal[ (i + head) % (size)];
-		minInd = (i+head) % (size);
+	    System.out.println("hi");
+	    if ( d2goal[i] < d2goal[minInd] ){
+		minInd = i;
 	    }
         }
-	size--;
+	System.out.println("Min Index:" + minInd );
+	System.out.println("Min Val: " + data[minInd]);
 	for (int i = minInd; i < size+minInd; i++){
-	    data[i%size] = data[i%size+1];
-	    d2goal[i%size] = d2goal[i%size+1];
+	    System.out.println("hi 2");
+	    data[i%size] = data[i%(size+1)];
+	    d2goal[i%size] = d2goal[i%(size+1)];
 	}
+	size--;
 	T value = (T)data[minInd];
 	return value;
     }
