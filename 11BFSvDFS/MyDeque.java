@@ -114,10 +114,10 @@ public class MyDeque<T>{
         }
 	System.out.println("Min Index:" + minInd );
 	System.out.println("Min Val: " + data[minInd]);
-	for (int i = minInd; i < size+minInd; i++){
-	    System.out.println("hi 2");
-	    data[i%size] = data[i%(size+1)];
-	    d2goal[i%size] = d2goal[i%(size+1)];
+	for (int i = 0; i < size; i++){
+	    System.out.println("hi 2  " + i + "/"+ i%size +"/"+ ((i%size)+1) );
+	    data[(i+minInd)%size] = data[((i+minInd)%size)+1];
+	    d2goal[(i+minInd)%size] = d2goal[((i+minInd)%size)+1];
 	}
 	size--;
 	T value = (T)data[minInd];
