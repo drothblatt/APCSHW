@@ -50,7 +50,6 @@ public class MyDeque<T>{
 	}
 	data[tail] = value;
 	size++;
-	System.out.println(size());
     }
     
     public T removeFirst(){
