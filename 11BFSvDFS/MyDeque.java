@@ -49,6 +49,18 @@ public class MyDeque<T>{
 	return ans;
     }
 
+    public String toStringD2G(){
+	String ans = "[";
+	if (size > 0){
+	    for (int i = 0; i < size-1; i++){
+		ans += d2goal[ (head+i) % d2goal.length] + ", ";
+	    }
+	    ans += d2goal[tail];
+	}
+	ans += "]";
+	return ans;
+    }
+
     public void addFirst(T value){
 	resize();
 	head--;
@@ -71,15 +83,9 @@ public class MyDeque<T>{
     }
     
     public void add(T value, int dist){
-	int pos;
-	if (tail+1 == data.length){
-	    pos = 0;
-	} else{
-	    pos = tail+1;
-	}
 	addLast(value);
-	d2goal[pos] = dist;
-	System.out.println("Added.\n" + showObjectArray() + "\n" + showD2GoalArray());
+	d2goal[tail] = dist;
+	System.out.println("Added.\n" + toString() + "\n" + toStringD2G());
     }
 
     public T removeFirst(){
@@ -101,27 +107,35 @@ public class MyDeque<T>{
     }
 
     public T removeSmallest(){
-	System.out.println(showObjectArray() + "\n" + showD2GoalArray() 
-			   + "\nPresize:" + size);
+	System.out.println("\n ------ Pre Stats\n" + toString() + "\n" 
+			   + toStringD2G()
+			   + "\nSize:" + size );
 	if (size == 0) throw new NoSuchElementException();
+	if (size == 1) {
+	    //System.out.println("went to size == 1");
+	    size--; 
+	    T value = (T)data[head];
+	    data[head] = null;
+	    head = (head+1)%data.length;
+	    return value;
+	}
 	int minInd = head;
-	System.out.println("hi");
+	//System.out.println("went to else");
 	for (int i = 0; i < size; i++){
-	    System.out.println("hi");
-	    if ( d2goal[i] < d2goal[minInd] ){
-		minInd = i;
+	    if ( d2goal[(i+head)%d2goal.length] < d2goal[minInd] ){
+		minInd = (i+head)%d2goal.length;
 	    }
         }
-	System.out.println("Min Index:" + minInd );
-	System.out.println("Min Val: " + data[minInd]);
-	for (int i = 0; i < size; i++){
-	    System.out.println("hi 2  " + i + "/"+ i%size +"/"+ ((i%size)+1) );
-	    data[(i+minInd)%size] = data[((i+minInd)%size)+1];
-	    d2goal[(i+minInd)%size] = d2goal[((i+minInd)%size)+1];
-	}
-	size--;
+	//System.out.println("Min Index:" + minInd );
+	//System.out.println("Min Val: " + data[minInd]);
+
 	T value = (T)data[minInd];
-	return value;
+	data[minInd] = data[head];
+	d2goal[minInd] = d2goal[head];
+	data[head] = null; 
+	size--;
+	head = (head+1)%data.length;
+	return (T)value;
     }
 
     public T getFirst(){

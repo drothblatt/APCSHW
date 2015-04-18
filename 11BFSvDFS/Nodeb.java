@@ -69,14 +69,20 @@ public class Nodeb{
 	Nodeb g = new Nodeb(1, 2, h); 
 	foo.add(g, 3);
 
+	Nodeb y = new Nodeb(4, 4, g);
+	foo.add(y, 8);
+
 	int x = 8;
 	while( x > 0){
 	    foo.removeSmallest();
-	    System.out.println("Removed.\n" + foo.showObjectArray() + "\n" + 
-			       foo.showD2GoalArray());
+	    System.out.println("Removed. (" + x + ")\n " + 
+			       foo.toString() + "\n" + 
+			       foo.toStringD2G());
 	    x--;
 
 	}
+	System.out.println("final:" +  foo.showObjectArray() + "\n" + 
+			       foo.showD2GoalArray());
     }
 }
 
