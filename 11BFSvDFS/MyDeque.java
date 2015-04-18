@@ -85,7 +85,6 @@ public class MyDeque<T>{
     public void add(T value, int dist){
 	addLast(value);
 	d2goal[tail] = dist;
-	System.out.println("Added.\n" + toString() + "\n" + toStringD2G());
     }
 
     public T removeFirst(){
@@ -107,12 +106,8 @@ public class MyDeque<T>{
     }
 
     public T removeSmallest(){
-	System.out.println("\n ------ Pre Stats\n" + toString() + "\n" 
-			   + toStringD2G()
-			   + "\nSize:" + size );
 	if (size == 0) throw new NoSuchElementException();
 	if (size == 1) {
-	    //System.out.println("went to size == 1");
 	    size--; 
 	    T value = (T)data[head];
 	    data[head] = null;
@@ -120,16 +115,12 @@ public class MyDeque<T>{
 	    return value;
 	}
 	int minInd = head;
-	//System.out.println("went to else");
 	for (int i = 0; i < size; i++){
 	    if ( d2goal[(i+head)%d2goal.length] < d2goal[minInd] ){
 		minInd = (i+head)%d2goal.length;
 	    }
         }
-	//System.out.println("Min Index:" + minInd );
-	//System.out.println("Min Val: " + data[minInd]);
-
-	T value = (T)data[minInd];
+	T value = (T)data[minInd]; // swapping as Mr. K demonstrated
 	data[minInd] = data[head];
 	d2goal[minInd] = d2goal[head];
 	data[head] = null; 
@@ -169,100 +160,6 @@ public class MyDeque<T>{
     public static void main(String[]args){
 	/*
 	MyDeque<String> a = new MyDeque<String>();
-
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addFirst("3");
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addFirst("2");
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addFirst("1");
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addLast("4");
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addLast("5");
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	//System.out.println(a.showRealArray());
-
-
-	a.addLast("6");
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	//System.out.println(a.showRealArray());
-
-
-	a.addFirst("0");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	
-	a.addFirst("-1");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addFirst("-2");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addLast("7");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addLast("8");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addLast("9");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-
-	a.addLast("10");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	System.out.println("real array: " + a.showRealArray());
-
-	a.addLast("11");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	System.out.println("real array: " + a.showRealArray());
-
-	a.addFirst("-3");
-	System.out.println(a.resize());
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	System.out.println("real array: " + a.showRealArray());
-	
-	System.out.println(a.getFirst());
-	System.out.println(a.getLast());
-
-	System.out.println(a.removeFirst());
-	System.out.println(a.removeLast());
-
-	System.out.println(a.HeadTailSize());
-	System.out.println(a.toString());
-	System.out.println("real array: " + a.showRealArray());
-
-	
-	System.out.println(a.getFirst());
-	System.out.println(a.getLast());
 	*/
-	
     }
 }
