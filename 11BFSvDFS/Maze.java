@@ -21,13 +21,13 @@ public class Maze{
     private class Node{
 	private int r; // row
 	private int c; // column
-	private int d; // distance from starting spot
+	private int dFrom; // distance from starting spot
 	private Node prev; // last spot
 
 	private Node(int row, int col){
 	    r = row;
 	    c = col;
-	    d = 0;
+	    dFrom = 0;
 	    prev = null;
 	}
 	
@@ -35,14 +35,14 @@ public class Maze{
 	    r = row;
 	    c = col;
 	    prev = last;
-	    d = dist;
+	    dFrom = dist;
 	}
 	
 	private Node(int row, int col, Node last){
 	    r = row;
 	    c = col; 
 	    prev = last;
-	    d = last.getDist();
+	    dFrom = last.getDFrom();
 	}
 	    
 	private int getRow(){
@@ -51,8 +51,11 @@ public class Maze{
 	private int getCol(){
 	    return c;
 	}
-	private int getDist(){
-	    return d; 
+	private int getDFrom(){
+	    return dFrom; 
+	}
+	private int getDTo(){
+	    return (endx - this.getRow()) + (endy - this.getCol()); // delta x + delta y
 	}
 	private Node getPrev(){
 	    return prev;
@@ -70,21 +73,17 @@ public class Maze{
 	    m = mode;
 	}
 	private void add(Node loc){
-	    if (m == 0){ // BFS
-		d.addLast(loc);
-	    } else if (m == 1){
-		d.addFirst(loc); // DFS
-	    } else if (m == 2 || m == 3){
-		int dTo = (endx - loc.getRow() ) + (endy - loc.getCol() ); // delta x + delta y
-		d.add(loc, dTo );
-	    } 
+	    if (m == 0) d.addLast(loc);  // Breadth First Search
+	    if (m == 1) d.addFirst(loc); // Depth First Search
+	    if (m == 2)	d.add(loc, loc.getDTo() );  // Best First Search 
+	    if (m == 3) d.add(loc, loc.getDTo() + loc.getDFrom() );  // A*
 	}
 	
 	private Node remove(){
-	    if (m < 2){
-		return d.removeFirst();
+	    if (m == 2 || m == 3){
+		return d.removeSmallest();
 	    } 
-	    return d.removeSmallest();
+	    return d.removeFirst();
 	    
 	}
 
@@ -95,8 +94,6 @@ public class Maze{
 	public String toString(){
 	    return d.toString();
 	}
-
-
     }
 
 
@@ -186,6 +183,13 @@ public class Maze{
 	return solveDFS(false);
     }
 
+    public boolean solveBest(){
+	return solveBest(false);
+    }
+
+    public boolean solveAStar(){
+	return solveAStar(false);
+    }
 
     public boolean solveBFS(boolean animate){
 	return solve(animate, 0);
@@ -193,6 +197,14 @@ public class Maze{
 
     public boolean solveDFS(boolean animate){
 	return solve(animate, 1);
+    }
+
+    public boolean solveBest(boolean animate){
+	return solve(animate, 2);
+    }
+
+    public boolean solveAStar(boolean animate){
+	return solve(animate, 3);
     }
 
     private boolean solve(boolean animate, int mode){
@@ -211,7 +223,7 @@ public class Maze{
 	    
 	if (solFound){
 	    Node bt = sol.getPrev();
-	    while (bt.getDist() > 0){
+	    while (bt.getDFrom() > 0){
 		if (animate){
 		    System.out.println(toString(animate));
 		    wait(40);
@@ -240,16 +252,16 @@ public class Maze{
 		maze[p.getRow()][p.getCol()] = 'x';
 	    }
 	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' ){
-		a.add(new Node(p.getRow()+1, p.getCol(), p.getDist()+1, p));
+		a.add(new Node(p.getRow()+1, p.getCol(), p.getDFrom()+1, p));
 	    }
 	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E'){
-		a.add(new Node(p.getRow()-1, p.getCol(), p.getDist()+1, p));
+		a.add(new Node(p.getRow()-1, p.getCol(), p.getDFrom()+1, p));
 	    }
 	    if ( maze[p.getRow()][p.getCol()+1] == ' ' || maze[p.getRow()][p.getCol()+1] == 'E' ){
-		a.add(new Node(p.getRow(), p.getCol()+1, p.getDist()+1, p)); 
+		a.add(new Node(p.getRow(), p.getCol()+1, p.getDFrom()+1, p)); 
 	    }
 	    if ( maze[p.getRow()][p.getCol()-1] == ' ' || maze[p.getRow()][p.getCol()-1] == 'E'){
-		a.add(new Node(p.getRow(), p.getCol()-1, p.getDist()+1, p)); 
+		a.add(new Node(p.getRow(), p.getCol()-1, p.getDFrom()+1, p)); 
 	    }
 	}
 	return false;
@@ -259,9 +271,9 @@ public class Maze{
 	if (sol == null){
 	    return new int[0];
 	}
-	int[] retA = new int[(sol.getDist()+1)*2];
+	int[] retA = new int[(sol.getDFrom()+1)*2];
 	Node current = sol;
-	for (int i = (sol.getDist()+1)*2-1; i >= 0; i-=2 ){
+	for (int i = (sol.getDFrom()+1)*2-1; i >= 0; i-=2 ){
 	    retA[i] = current.getCol();
 	    retA[i-1] = current.getRow();
 	    current = current.getPrev();
