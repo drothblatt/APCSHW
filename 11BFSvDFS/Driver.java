@@ -18,12 +18,23 @@ public class Driver{
 	// DFS w/ animation
 	//a.solveDFS(true);
 	//b.solveDFS(true);
-	c.solveDFS(true);
+	//c.solveDFS(true);
 	// DFS w/out animation
 	//a.solveDFS(false);
 	//b.solveDFS(false);
 	//c.solveDFS(false);
-	System.out.println("\n" + Arrays.toString(c.solutionCoordinates()) + "\n" );
+
+	//System.out.println("Best: ");
+	//a.solveBest(false);
+	//b.solveBest(true);
+	//c.solveBest(true);
+
+	//System.out.println("AStar: ");
+	a.solveAStar(false);
+	//b.solveAStar(true);
+	//c.solveAStar(true);
+		   
+	System.out.println("\n" + Arrays.toString(a.solutionCoordinates()) + "\n" );
 
     }
 
