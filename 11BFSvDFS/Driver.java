@@ -7,6 +7,11 @@ public class Driver{
         Maze a = new Maze("data1.dat");
         Maze b = new Maze("data2.dat");
         Maze c = new Maze("data3.dat");
+	Maze z = new Maze("dataBestAStar.dat");
+
+	//z.solveBest(true);
+	//z.solveAStar(true);
+
 	// BFS w/ animation
         //a.solveBFS(true);
 	//b.solveBFS(true);
@@ -27,14 +32,14 @@ public class Driver{
 	//System.out.println("Best: ");
 	//a.solveBest(false);
 	//b.solveBest(true);
-	//c.solveBest(true);
+	//c.solveAStar(true);
 
 	//System.out.println("AStar: ");
-	a.solveAStar(false);
+	//a.solveAStar(false);
 	//b.solveAStar(true);
 	//c.solveAStar(true);
 		   
-	System.out.println("\n" + Arrays.toString(a.solutionCoordinates()) + "\n" );
+	System.out.println("\n" + Arrays.toString(z.solutionCoordinates()) + "\n" );
 
     }
 

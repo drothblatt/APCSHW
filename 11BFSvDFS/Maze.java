@@ -165,7 +165,7 @@ public class Maze{
     }
     
     public String toString(){
-	String ans = "\nMaze:\n";
+	String ans = "\nMaze:\n\n";
 	for(int i=0;i<maxx*maxy;i++){
 	    if(i%maxx ==0 && i!=0){
 		ans+="\n";
