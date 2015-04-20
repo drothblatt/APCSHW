@@ -55,7 +55,7 @@ public class Maze{
 	    return dFrom; 
 	}
 	private int getDTo(){
-	    return (endx - this.getRow()) + (endy - this.getCol()); // delta x + delta y
+	    return Math.abs(endx - this.getRow()) + Math.abs(endy - this.getCol()); // delta x + delta y
 	}
 	private Node getPrev(){
 	    return prev;
@@ -243,6 +243,7 @@ public class Maze{
 	    wait(70);
 	}
 	Node p = a.remove();
+	System.out.println(p + " " + p.getDTo());
 	if (maze[p.getRow()][p.getCol()] == 'E'){
 	    sol = p; 
 	    return true;
@@ -251,9 +252,11 @@ public class Maze{
 	    if ( maze[p.getRow()][p.getCol()] == ' ' ){
 		maze[p.getRow()][p.getCol()] = 'x';
 	    }
+
 	    if ( maze[p.getRow()+1][p.getCol()] == ' ' || maze[p.getRow()+1][p.getCol()] == 'E' ){
 		a.add(new Node(p.getRow()+1, p.getCol(), p.getDFrom()+1, p));
 	    }
+
 	    if ( maze[p.getRow()-1][p.getCol()] == ' ' || maze[p.getRow()-1][p.getCol()] == 'E'){
 		a.add(new Node(p.getRow()-1, p.getCol(), p.getDFrom()+1, p));
 	    }

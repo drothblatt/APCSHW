@@ -9,8 +9,10 @@ public class Driver{
         Maze c = new Maze("data3.dat");
 	Maze z = new Maze("dataBestAStar.dat");
 
-	//z.solveBest(true);
+	z.solveBest(true);
 	//z.solveAStar(true);
+	//c.solveBFS(true);
+	//c.solveDFS(true);
 
 	// BFS w/ animation
         //a.solveBFS(true);
