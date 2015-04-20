@@ -9,7 +9,7 @@ public class Driver{
         Maze c = new Maze("data3.dat");
 	Maze z = new Maze("dataBestAStar.dat");
 
-	z.solveBest(true);
+	b.solveBest(true);
 	//z.solveAStar(true);
 	//c.solveBFS(true);
 	//c.solveDFS(true);
@@ -41,7 +41,7 @@ public class Driver{
 	//b.solveAStar(true);
 	//c.solveAStar(true);
 		   
-	System.out.println("\n" + Arrays.toString(z.solutionCoordinates()) + "\n" );
+	System.out.println("\n" + Arrays.toString(b.solutionCoordinates()) + "\n" );
 
     }
 
