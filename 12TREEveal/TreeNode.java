@@ -15,15 +15,15 @@ public class TreeNode<E>{
 	    right = nodeR;
 	}
 
-	public int getLeft(){
+	public TreeNode<E> getLeft(){
 	    return left;
 	}
 	
-	public int getRight(){
+	public TreeNode<E> getRight(){
 	    return right;
 	}
 
-	public int getValue(){
+	public E getValue(){
 	    return value;
 	}
 
