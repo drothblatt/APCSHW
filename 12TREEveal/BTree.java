@@ -39,7 +39,8 @@ public class BTree<E> {
       Wrapper method for the recursive add()
       ====================*/     
     public void add( E d ) { 
-
+	TreeNode<E> bn = new TreeNode<E>();
+	add(root, bn);
     }
 
     /*======== public void add() ==========
