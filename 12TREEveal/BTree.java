@@ -24,6 +24,7 @@ public class BTree<E> {
     public static final int PRE_ORDER = 0;
     public static final int IN_ORDER = 1;
     public static final int POST_ORDER = 2;
+    private Random r = new Random();
     
 
     private TreeNode<E> root;
@@ -55,12 +56,20 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	if (current.getLeft() == null || current.getRight() == null){
-	    if(curr.getLeft()  == null) curr.setLeft(bn);
-	    else if (curr.getRight == null) curr.setRight(bn);
-	} 
-	add(curr.getLeft(), bn);
-	add(curr.getRight(), bn);
+	if (curr == null){
+	    curr = bn;
+	} else if (curr.getLeft() == null){
+	    curr.setLeft(bn);
+	} else if (curr.getRight == null){
+	    curr.setRight(bn);
+	} else {
+	    int pickAChild = r.nextInt(2);
+	    if (pickAChild == 0){
+		add(curr.getLeft(), bn);
+	    } else if (pickAChild == 1){
+		add(curr.getRight(), bn);
+	    }
+	}
     }
     
     public void traverse( int mode) {
@@ -81,6 +90,11 @@ public class BTree<E> {
       pre-order Traversal
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
+	if (curr != null) {
+	    System.out.println( curr.getData() );
+	    preOrder( curr.getLeft() );
+	    preOrder( curr.getRight() );
+	}
     }
 
 
@@ -92,6 +106,11 @@ public class BTree<E> {
       in-order Traversal
       ====================*/
     public void inOrder( TreeNode<E> curr ) {
+	if (curr != null) {
+	    inOrder( curr.getLeft() );
+	    System.out.println( curr.getData() );
+	    inOrder( curr.getRight() );
+	}
     }
 
     /*======== public void postOrder() ==========
@@ -103,6 +122,12 @@ public class BTree<E> {
 
       ====================*/
     public void postOrder( TreeNode<E> curr ) {
+	if (curr != null) {
+	    preOrder( curr.getLeft() );
+	    preOrder( curr.getRight() );
+	    System.out.println( curr.getData() );
+
+	}
     }
     
     /*======== public int getHeight()) ==========
@@ -159,7 +184,7 @@ public class BTree<E> {
 
       ====================*/
     public String toString() {
-	return "";
+	return ""
     }
 	
 
