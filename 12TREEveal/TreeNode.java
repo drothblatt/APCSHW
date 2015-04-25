@@ -2,15 +2,15 @@ import java.util.*;
 import java.io.*;
 
 public class TreeNode<E>{
-	E value;
+	E data;
 	TreeNode left, right;
 
-	public TreeNode(E someVal){
-	    value = someVal;
+	public TreeNode(E someData){
+	    data = someData;
 	} 
 	
-	public TreeNode(E someVal, TreeNode<E> nodeL, TreeNode<E> nodeR){
-	    value = someVal;
+	public TreeNode(E someData, TreeNode<E> nodeL, TreeNode<E> nodeR){
+	    data = someData;
 	    left = nodeL;
 	    right = nodeR;
 	}
@@ -23,8 +23,8 @@ public class TreeNode<E>{
 	    return right;
 	}
 
-	public E getValue(){
-	    return value;
+	public E getData(){
+	    return data;
 	}
 
 	public void setLeft(TreeNode<E> newLeft){
@@ -35,12 +35,12 @@ public class TreeNode<E>{
 	    right = newRight;
 	}
 
-	public void setValue(E someVal){
-	    value = someVal;
+	public void setData(E someData){
+	    data = someData;
 	}
 
 	public String toString(){
-	    return "My Value: " + getValue() 
+	    return "My Data: " + getData() 
 		+ "Left Node: " + getLeft() + 
 		"Right Node: " + getRight() ;
 	}

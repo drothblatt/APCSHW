@@ -27,7 +27,7 @@ public class BTree<E> {
     private Random r = new Random();
     
 
-    private TreeNode<E> root;
+    public TreeNode<E> root;
 
     public BTree() {
 	root = null;
@@ -41,7 +41,13 @@ public class BTree<E> {
       ====================*/     
     public void add( E d ) { 
 	TreeNode<E> bn = new TreeNode<E>(d);
-	add(root, bn);
+	System.out.println("bn: " + bn);
+	if (root == null){
+	    root = bn;
+	} else{
+	    System.out.println("here");
+	    add(root, bn);
+	}
     }
 
     /*======== public void add() ==========
@@ -57,10 +63,15 @@ public class BTree<E> {
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
 	if (curr == null){
+	    System.out.println("root before: " + root);
+	    System.out.println("bn before: " + bn);
+	    System.out.println("curr before: " + curr);
 	    curr = bn;
+	    System.out.println("curr after: " + curr);
+	    System.out.println("root after: " + root);
 	} else if (curr.getLeft() == null){
 	    curr.setLeft(bn);
-	} else if (curr.getRight == null){
+	} else if (curr.getRight() == null){
 	    curr.setRight(bn);
 	} else {
 	    int pickAChild = r.nextInt(2);
@@ -70,6 +81,7 @@ public class BTree<E> {
 		add(curr.getRight(), bn);
 	    }
 	}
+	System.out.println("hi");
     }
     
     public void traverse( int mode) {
@@ -184,16 +196,18 @@ public class BTree<E> {
 
       ====================*/
     public String toString() {
-	return ""
+	return "";
     }
 	
 
     public static void main( String[] args ) {
 
 	BTree<Integer> t = new BTree<Integer>();
-
+	t.add(23);
+	System.out.println("FINAL ROOT RESULT:" + t.root);
+	/*
 	for ( int i=0; i < 8; i++ ) 
-	    t.add( i );
+	    t.add( i );  
 	System.out.println( "Pre-order: ");
 	t.traverse( PRE_ORDER );
 	System.out.println( "In-order: ");
@@ -203,5 +217,6 @@ public class BTree<E> {
 	System.out.println( "Height: " + t.getHeight() );
 
 	System.out.println( t );
+	*/
     }
 }
