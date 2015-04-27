@@ -62,7 +62,7 @@ public class BTree<E> {
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
 	if (curr == null){
-	    curr == bn;
+	    curr = bn;
 	}
 	if (curr.getLeft() != null || curr.getRight() != null){
 	    if (curr.getLeft() != null && curr.getRight() != null){
