@@ -29,6 +29,7 @@ public class BTree<E> {
 
     public TreeNode<E> root;
 
+
     public BTree() {
 	root = null;
     }
@@ -41,11 +42,9 @@ public class BTree<E> {
       ====================*/     
     public void add( E d ) { 
 	TreeNode<E> bn = new TreeNode<E>(d);
-	System.out.println("bn: " + bn);
 	if (root == null){
 	    root = bn;
 	} else{
-	    System.out.println("here");
 	    add(root, bn);
 	}
     }
@@ -62,14 +61,7 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	if (curr == null){
-	    System.out.println("root before: " + root);
-	    System.out.println("bn before: " + bn);
-	    System.out.println("curr before: " + curr);
-	    curr = bn;
-	    System.out.println("curr after: " + curr);
-	    System.out.println("root after: " + root);
-	} else if (curr.getLeft() == null){
+	if (curr.getLeft() == null){
 	    curr.setLeft(bn);
 	} else if (curr.getRight() == null){
 	    curr.setRight(bn);
@@ -81,7 +73,6 @@ public class BTree<E> {
 		add(curr.getRight(), bn);
 	    }
 	}
-	System.out.println("hi");
     }
     
     public void traverse( int mode) {
@@ -103,9 +94,10 @@ public class BTree<E> {
       ====================*/
     public void preOrder( TreeNode<E> curr ) {
 	if (curr != null) {
-	    System.out.println( curr.getData() );
+	    System.out.print( curr.getData() );
 	    preOrder( curr.getLeft() );
 	    preOrder( curr.getRight() );
+	    
 	}
     }
 
@@ -120,7 +112,7 @@ public class BTree<E> {
     public void inOrder( TreeNode<E> curr ) {
 	if (curr != null) {
 	    inOrder( curr.getLeft() );
-	    System.out.println( curr.getData() );
+	    System.out.print( curr.getData() );
 	    inOrder( curr.getRight() );
 	}
     }
@@ -137,8 +129,7 @@ public class BTree<E> {
 	if (curr != null) {
 	    preOrder( curr.getLeft() );
 	    preOrder( curr.getRight() );
-	    System.out.println( curr.getData() );
-
+	    System.out.print( curr.getData() );
 	}
     }
     
@@ -157,8 +148,9 @@ public class BTree<E> {
       
       ====================*/
     public int getHeight( TreeNode<E> curr ) {
-	if (curr.getLeft() != null)  return 1 + getHeight(curr.getLeft()) ;
-	if (curr.getRight() != null) return 1 + getHeight(curr.getRight()) ;
+	if (curr == null) return 0;
+	if (curr.getLeft() != null || curr.getRight() != null) 
+	    return 1 + Math.max(getHeight(curr.getLeft()) , getHeight(curr.getRight()));
 	return 1;
     }
 
@@ -170,10 +162,25 @@ public class BTree<E> {
                given level, ordered left -> right
       
       ====================*/
-    public String getLevel( TreeNode<E> curr, int level, int currLevel ) {
-	return "";
+    public String getLevel( TreeNode<E> curr, int level ) {
+	if (level > getHeight() ){
+	    throw new NullPointerException();
+	}
+
+	if (curr != null){
+	    if (level == 0){
+		return "" + curr.getData();
+	    }
+	    else{
+		return getLevel(curr.getLeft(), level-1) +
+		    " " + getLevel(curr.getRight(), level-1);
+	    }
+
+	}
+	
+	return " ";
     }
-    
+
     /*======== public String toString()) ==========
       Inputs:   
       Returns: A string representation of the tree
@@ -196,18 +203,25 @@ public class BTree<E> {
 
       ====================*/
     public String toString() {
-	return "";
+	String res = "";
+	for(int i = 0; i < getHeight(); i++){
+	    res += getLevel(root,i) + "\n";
+	}
+	return res;
+
+    }	
+
+    public String name(){
+	return "rothblatt.david";
     }
-	
 
     public static void main( String[] args ) {
 
 	BTree<Integer> t = new BTree<Integer>();
-	t.add(23);
-	System.out.println("FINAL ROOT RESULT:" + t.root);
-	/*
-	for ( int i=0; i < 8; i++ ) 
+
+	for ( int i= 0; i < 9; i++ ) {
 	    t.add( i );  
+	}
 	System.out.println( "Pre-order: ");
 	t.traverse( PRE_ORDER );
 	System.out.println( "In-order: ");
@@ -215,8 +229,15 @@ public class BTree<E> {
 	System.out.println( "Post-order: ");
 	t.traverse( POST_ORDER );
 	System.out.println( "Height: " + t.getHeight() );
-
 	System.out.println( t );
-	*/
+
+	System.out.println("getlevels");
+	System.out.println(t.getLevel(t.root,0));
+	System.out.println(t.getLevel(t.root,1));
+	System.out.println(t.getLevel(t.root,2));
+	System.out.println(t.getLevel(t.root,3));
+
+
+
     }
 }
