@@ -83,7 +83,7 @@ public class BTree<E> {
 		curr.setRight(bn);
 	    }
 	}
-    }
+    } 
 
     public void traverse( int mode) {
 	if ( mode == PRE_ORDER )
@@ -188,7 +188,7 @@ public class BTree<E> {
 
 	}
 	
-	return " ";
+	return "";
     }
 
     /*======== public String toString()) ==========
