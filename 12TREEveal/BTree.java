@@ -61,20 +61,30 @@ public class BTree<E> {
       added to randomly.
       ====================*/
     private void add( TreeNode<E> curr, TreeNode<E> bn ) {
-	if (curr.getLeft() == null){
-	    curr.setLeft(bn);
-	} else if (curr.getRight() == null){
-	    curr.setRight(bn);
+	if (curr.getLeft() != null || curr.getRight() != null){
+	    if (curr.getLeft() != null && curr.getRight() != null){
+		int pickAChild = r.nextInt(2);
+		if (pickAChild == 0){
+		    add(curr.getLeft(), bn);
+		} else if (pickAChild == 1){
+		    add(curr.getRight(), bn);
+		}
+	    }
+	    if (curr.getLeft() == null){
+		curr.setLeft(bn);
+	    } else if (curr.getRight() == null){
+		curr.setRight(bn);
+	    }
 	} else {
 	    int pickAChild = r.nextInt(2);
 	    if (pickAChild == 0){
-		add(curr.getLeft(), bn);
+		curr.setLeft(bn);
 	    } else if (pickAChild == 1){
-		add(curr.getRight(), bn);
+		curr.setRight(bn);
 	    }
 	}
     }
-    
+
     public void traverse( int mode) {
 	if ( mode == PRE_ORDER )
 	    preOrder( root );
