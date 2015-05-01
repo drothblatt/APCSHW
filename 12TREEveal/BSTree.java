@@ -1,51 +1,6 @@
 import java.io.*;
 import java.util.*;
 
-public class BSTreeNode<T implements Comparable> {
-
-    private T data;
-    private BSTreeNode<T> left;
-    private BSTreeNode<T> right;
-
-    public BSTreeNode( T d ) {
- 
-	data = d;
-	left = right = null;
-    }
-    
-    //accessors
-    public T getData() {
-	return data;
-    }
-    public BSTreeNode<T> getLeft() {
-	return left;
-    }
-    public BSTreeNode<T> getRight() {
-	return right;
-    }
-
-    //mutators
-    public void setData( T d ) {
-	data = d;
-    }
-    public void setLeft( BSTreeNode<T> l ) {
-	left = l;
-    }
-    public void setRight( BSTreeNode<T> r ) {
-	right = r;
-    }
-}
-
-
-
-//
-//
-//Your binary search tree skeleton file:
-
-
-import java.io.*;
-import java.util.*;
-
 public class BSTree <T implements Comparable> {
 
     private BSTreeNode<T> root;
@@ -79,7 +34,8 @@ public class BSTree <T implements Comparable> {
       Add t to the correct place in the tree rooted at curr.
       ====================*/
     private BSTreeNode<T> add(BSTreeNode<T> curr, BSTreeNode<T> t) {
-	return null;
+	if (curr = null) return t;
+	if ( (t.getData).compareTo(curr.getData) > 0 )
     }
 
     /*======== public void remove() ==========

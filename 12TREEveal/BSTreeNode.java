@@ -41,9 +41,6 @@ public class BSTreeNode<T extends Comparable> {
 	right = r;
     }
 
-    public int compareTo(){}
-
-
     public String toString(){
 	return "My Data: " + getData() 
 	    + "Left Node: " + getLeft() + 
