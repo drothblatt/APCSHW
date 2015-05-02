@@ -13,7 +13,7 @@ public class BSTreeNode<T extends Comparable> {
 	left = right = null;
     }
 	
-    public TreeNode(T someData, TreeNode<T> nodeL, TreeNode<T> nodeR){
+    public BSTreeNode(T someData, BSTreeNode<T> nodeL, BSTreeNode<T> nodeR){
 	data = someData;
 	left = nodeL;
 	right = nodeR;
@@ -40,11 +40,9 @@ public class BSTreeNode<T extends Comparable> {
     public void setRight( BSTreeNode<T> r ) {
 	right = r;
     }
-
+    
     public String toString(){
-	return "My Data: " + getData() 
-	    + "Left Node: " + getLeft() + 
-	    "Right Node: " + getRight() ;
+	return "" + getData();
     }
-
+    
 }
