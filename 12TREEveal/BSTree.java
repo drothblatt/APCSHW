@@ -77,10 +77,10 @@ public class BSTree <T extends Comparable> {
 	    replaceRoot();
 	} 
 	else if ( c.compareTo( curr.getData() ) > 0 ){
-	    curr = remove(curr.getRight(), c);
+	    return remove(curr.getRight(), c);
 	} 
 	else if ( c.compareTo( curr.getData() ) < 0 ){
-	    curr = remove(curr.getLeft(), c);
+	    return remove(curr.getLeft(), c);
 	}
 	return curr;
     }
