@@ -217,6 +217,8 @@ public class BSTree <T extends Comparable> {
 	bs.add(5);
 	bs.add(3);
 	bs.add(15);
+	bs.add(12);
+	bs.add(10);
 	System.out.println(bs.toString());
     }
 
