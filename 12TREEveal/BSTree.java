@@ -65,9 +65,29 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	return null;
+	if ( curr == null ){
+	    System.out.println("what?");
+	    return curr;
+	}
+
+	if ( c.compareTo(curr.getData()) == 0 ){
+	    if (isLeaf(curr)) {
+		curr = null; 
+	    }
+	    replaceRoot();
+	} 
+	else if ( c.compareTo( curr.getData() ) > 0 ){
+	    curr = remove(curr.getRight(), c);
+	} 
+	else if ( c.compareTo( curr.getData() ) < 0 ){
+	    curr = remove(curr.getLeft(), c);
+	}
+	return curr;
     }
 
+    private BSTreeNode<T> replaceRoot(){
+	return null;
+    }
 
     /*======== public void inOrder()) ==========
       Inputs:   
@@ -214,12 +234,23 @@ public class BSTree <T extends Comparable> {
    
     public static void main( String[] args ) {
 	BSTree<Integer> bs = new BSTree<Integer>();
-	bs.add(5);
-	bs.add(3);
-	bs.add(15);
-	bs.add(12);
-	bs.add(10);
-	System.out.println(bs.toString());
+
+	bs.add(20);
+	bs.add(19);
+	bs.add(6);
+	bs.add(35);
+	bs.add(27);
+	bs.add(26);
+	bs.add(2);
+	bs.add(8);
+	System.out.println("\n" + bs.toString());
+	bs.remove(2);
+	System.out.println("\n" + bs.toString());
+	bs.remove(8);
+	System.out.println("\n" + bs.toString());
+	bs.remove(26);
+	System.out.println("\n" + bs.toString());
+
     }
 
 }
