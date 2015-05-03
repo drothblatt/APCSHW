@@ -68,8 +68,7 @@ public class BSTree <T extends Comparable> {
 	if ( curr != null) {
 	    if ( c.compareTo(curr.getData()) == 0 ){
 		if (isLeaf(curr)) {
-		    curr = null; 
-		    return curr;
+		    return null;
 		} else{
 		    return remove(curr.getLeft(), getMaxLeft(curr));
 		}
@@ -233,6 +232,10 @@ public class BSTree <T extends Comparable> {
 	result += getLevel(root, height, height, height, wordLength).replaceFirst("\\s+$", "");
 				
 	return result;
+    }
+
+    public String name(){
+	return "rothblatt.david";
     }
    
     public static void main( String[] args ) {
