@@ -69,6 +69,7 @@ public class BSTree <T extends Comparable> {
 	    if ( c.compareTo(curr.getData()) == 0 ){
 		if (isLeaf(curr)) {
 		    curr = null; 
+		    return curr;
 		} else{
 		    return remove(curr.getLeft(), getMaxLeft(curr));
 		}
