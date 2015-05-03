@@ -65,28 +65,30 @@ public class BSTree <T extends Comparable> {
       curr, if it exists.
       ====================*/
     private BSTreeNode<T> remove( BSTreeNode<T> curr, T c ) {
-	if ( curr == null ){
-	    System.out.println("what?");
-	    return curr;
-	}
-
-	if ( c.compareTo(curr.getData()) == 0 ){
-	    if (isLeaf(curr)) {
-		curr = null; 
+	if ( curr != null) {
+	    if ( c.compareTo(curr.getData()) == 0 ){
+		if (isLeaf(curr)) {
+		    curr = null; 
+		} else{
+		    return remove(curr.getLeft(), getMaxLeft(curr));
+		}
+	    } else if ( c.compareTo( curr.getData() ) > 0 ){
+		return remove(curr.getRight(), c);
+	    } else if ( c.compareTo( curr.getData() ) < 0 ){
+		return remove(curr.getLeft(), c);
 	    }
-	    replaceRoot();
-	} 
-	else if ( c.compareTo( curr.getData() ) > 0 ){
-	    return remove(curr.getRight(), c);
-	} 
-	else if ( c.compareTo( curr.getData() ) < 0 ){
-	    return remove(curr.getLeft(), c);
 	}
 	return curr;
     }
 
-    private BSTreeNode<T> replaceRoot(){
-	return null;
+    private T getMaxLeft(BSTreeNode<T> curr){
+	if (curr == null){
+	    return null;
+	} 
+	while(curr.getRight() != null){
+	    curr = curr.getRight();
+	}
+	return curr.getData();
     }
 
     /*======== public void inOrder()) ==========
@@ -245,9 +247,7 @@ public class BSTree <T extends Comparable> {
 	bs.add(8);
 	System.out.println("\n" + bs.toString());
 	bs.remove(2);
-	System.out.println("\n" + bs.toString());
 	bs.remove(8);
-	System.out.println("\n" + bs.toString());
 	bs.remove(26);
 	System.out.println("\n" + bs.toString());
 
