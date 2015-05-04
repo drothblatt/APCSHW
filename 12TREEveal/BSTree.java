@@ -242,6 +242,8 @@ public class BSTree <T extends Comparable> {
     public static void main( String[] args ) {
 	BSTree<Integer> bs = new BSTree<Integer>();
 
+	System.out.println(bs.name());
+
 	bs.add(20);
 	bs.add(19);
 	bs.add(6);
@@ -250,14 +252,25 @@ public class BSTree <T extends Comparable> {
 	bs.add(26);
 	bs.add(2);
 	bs.add(8);
+	bs.add(11);
+	bs.add(48);
+	bs.add(50);
+	bs.add(39);
+	bs.add(37);
 	System.out.println("\n------------\n" + bs.toString());
-	bs.remove(2);
+	bs.remove(20);
+	bs.add(29);
+	System.out.println("\n------------\n" + bs.toString());
+	bs.remove(35);	
+	System.out.println("\n------------\n" + bs.toString());
+
+	/*
 	bs.remove(8);
 	bs.remove(26);
 	System.out.println("\n------------\n" + bs.toString());
 	bs.remove(20);
 	System.out.println("\n------------\n" + bs.toString());
-
+	*/
 
     }
 
