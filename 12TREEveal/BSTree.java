@@ -68,14 +68,14 @@ public class BSTree <T extends Comparable> {
 	if ( curr != null) {
 	    if ( c.compareTo(curr.getData()) == 0 ){
 		if (isLeaf(curr)) {
-		    return null;
+		    curr = null;
 		} else{
-		    return remove(curr.getLeft(), getMaxLeft(curr));
+		    curr.setLeft(remove(curr.getLeft(), c));
 		}
 	    } else if ( c.compareTo( curr.getData() ) > 0 ){
-		return remove(curr.getRight(), c);
+		curr.setRight(remove(curr.getRight(), c));
 	    } else if ( c.compareTo( curr.getData() ) < 0 ){
-		return remove(curr.getLeft(), c);
+		curr.setLeft(remove(curr.getLeft(), c));
 	    }
 	}
 	return curr;
