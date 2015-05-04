@@ -70,7 +70,8 @@ public class BSTree <T extends Comparable> {
 		if (isLeaf(curr)) {
 		    curr = null;
 		} else{
-		    curr.setLeft(remove(curr.getLeft(), c));
+		    curr.setData( (replace(curr.getRight())).getData() );
+		    curr.setRight( remove(curr.getRight(), curr.getData()));
 		}
 	    } else if ( c.compareTo( curr.getData() ) > 0 ){
 		curr.setRight(remove(curr.getRight(), c));
@@ -81,14 +82,14 @@ public class BSTree <T extends Comparable> {
 	return curr;
     }
 
-    private T getMaxLeft(BSTreeNode<T> curr){
+    private BSTreeNode<T> replace(BSTreeNode<T> curr){
 	if (curr == null){
 	    return null;
 	} 
-	while(curr.getRight() != null){
-	    curr = curr.getRight();
+	while(curr.getLeft() != null){
+	    curr = curr.getLeft();
 	}
-	return curr.getData();
+	return curr;
     }
 
     /*======== public void inOrder()) ==========
@@ -249,11 +250,14 @@ public class BSTree <T extends Comparable> {
 	bs.add(26);
 	bs.add(2);
 	bs.add(8);
-	System.out.println("\n" + bs.toString());
+	System.out.println("\n------------\n" + bs.toString());
 	bs.remove(2);
 	bs.remove(8);
 	bs.remove(26);
-	System.out.println("\n" + bs.toString());
+	System.out.println("\n------------\n" + bs.toString());
+	bs.remove(20);
+	System.out.println("\n------------\n" + bs.toString());
+
 
     }
 
