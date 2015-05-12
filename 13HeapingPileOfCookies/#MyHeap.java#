@@ -106,7 +106,7 @@ public class MyHeap{
 	    System.out.println(val);
 	}
 	System.out.println(h);
-
+	/
 	System.out.println(h.peek());
 	System.out.println(h.remove());
 	System.out.println(h);
