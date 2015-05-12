@@ -32,6 +32,8 @@ public class MyHeap{
 	int removed = heap[1];
 	heap[1] = heap[heap[0]];
 	heap[heap[0]] = 0;
+	int i = 1;
+	comeOnDownMax(1);
 	heap[0] = heap[0] - 1; // size (decreases by 1)
 	return removed;
     }
@@ -39,8 +41,70 @@ public class MyHeap{
     private int removeMin(){
 	int removed = heap[1];
 	heap[1] = heap[heap[0]];
+	heap[heap[0]] = 0;
+	comeOnDownMin(1);
 	heap[0] = heap[0] - 1; // size (decreases by 1)
 	return removed;
+    }
+
+    private void comeOnDownMax(int i){
+	if ( ((i*2)+1) < heap[0] ){
+	    if (heap[i] < heap[i*2] && heap[i] < heap[(i*2)+1]){
+		if (heap[i*2] > heap[(i*2)+1]){
+		    int temp = heap[i];
+		    heap[i] = heap[i*2];
+		    heap[i*2] = temp;
+		    comeOnDownMax(i*2);
+		} else{
+		    int temp = heap[i];
+		    heap[i] = heap[(i*2)+1];
+		    heap[(i*2)+1] = temp;
+		    comeOnDownMax( (i*2)+1 );
+		}
+	    } else{
+		if (heap[i] < heap[i*2]){
+		    int temp = heap[i];
+		    heap[i] = heap[i*2];
+		    heap[i*2] = temp;
+		    comeOnDownMax(i*2);
+		} else if (heap[i] < heap[(i*2)+1] ){
+		    int temp = heap[i];
+		    heap[i] = heap[(i*2)+1];
+		    heap[(i*2)+1] = temp;
+		    comeOnDownMax((i*2)+1);
+		}
+	    }
+	}
+    }
+
+    private void comeOnDownMin(int i){
+	if ( ((i*2)+1) < heap[0] ){
+	    if (heap[i] > heap[i*2] && heap[i] > heap[(i*2)+1]){
+		if (heap[i*2] < heap[(i*2)+1]){
+		    int temp = heap[i];
+		    heap[i] = heap[i*2];
+		    heap[i*2] = temp;
+		    comeOnDownMax(i*2);
+		} else{
+		    int temp = heap[i];
+		    heap[i] = heap[(i*2)+1];
+		    heap[(i*2)+1] = temp;
+		    comeOnDownMax( (i*2)+1 );
+		}
+	    } else{
+		if (heap[i] > heap[i*2]){
+		    int temp = heap[i];
+		    heap[i] = heap[i*2];
+		    heap[i*2] = temp;
+		    comeOnDownMax(i*2);
+		} else if (heap[i] > heap[(i*2)+1] ){
+		    int temp = heap[i];
+		    heap[i] = heap[(i*2)+1];
+		    heap[(i*2)+1] = temp;
+		    comeOnDownMax((i*2)+1);
+		}
+	    }
+	}
     }
 
     public void add(int x) {  // add the int to the heap
@@ -98,20 +162,25 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap h = new MyHeap(false);
+	MyHeap h = new MyHeap(true);
 	Random r = new Random();
-	for (int i = 0; i < 15; i++){
-	    int val = r.nextInt(100)+1;
-	    h.add(val);
-	    System.out.println(val);
-	}
-	System.out.println(h);
-	/*
-	System.out.println(h.peek());
-	System.out.println(h.remove());
-	System.out.println(h);
-	*/
 
+	h.add(32);
+	h.add(10);
+	h.add(55);
+	h.add(6);
+	h.add(7);
+	h.add(88);
+	h.add(76);
+	h.add(42);
+	h.add(61);
+	System.out.println(h);
+	for (int i = 0; i < 9; i++){
+	    System.out.println(h.peek());
+	    System.out.println(h.remove());
+	    System.out.println(h);
+	}
+	
     }
 
 }
