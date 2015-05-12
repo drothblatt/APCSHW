@@ -17,7 +17,7 @@ public class MyHeap{
     
     public String toString() {
 	String retStr = "";
-	for (int i = 1; i <= size; i++){}
+	for (int i = 1; i <= heap[0]; i++){}
 	return retStr;
     }
     
@@ -28,14 +28,14 @@ public class MyHeap{
 
     private int removeMax(){
 	int removed = heap[1];
-	heap[1] = heap[size];
+	heap[1] = heap[heap[0]];
 	heap[0] = heap[0] - 1; // size (decreases by 1)
 	return removed;
     }
 
     private int removeMin(){
 	int removed = heap[1];
-	heap[1] = heap[size];
+	heap[1] = heap[heap[0]];
 	heap[0] = heap[0] - 1; // size (decreases by 1)
 	return removed;
     }
@@ -43,7 +43,7 @@ public class MyHeap{
     public void add(int x) {  // add the int to the heap
 	if (heapType) addMax(x);
 	else addMin(x);
-	size++;
+	heap[0] = heap[0] + 1;
     }
 
     private void addMax(int x){}
