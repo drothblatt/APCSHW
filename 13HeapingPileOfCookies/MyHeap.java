@@ -44,9 +44,15 @@ public class MyHeap{
     }
 
     public void add(int x) {  // add the int to the heap
+	if (heap[0] == heap.length-1) resize();
 	if (heapType) addMax(x);
 	else addMin(x);
 	heap[0] = heap[0] + 1;
+    }
+
+    public void resize(){
+	int[] copy = Arrays.copyOf(heap, heap.length*2);
+	heap = copy;
     }
 
     private void addMax(int x){
@@ -74,11 +80,10 @@ public class MyHeap{
 
     public static void main(String[]args){
 	MyHeap h = new MyHeap();
-	h.add(17);
-	h.add(20);
-	h.add(24);
-	h.add(81);
-	System.out.println(h);
+	for (int i = 20; i < 90; i = i+5){
+	    h.add(i);
+	    System.out.println(h);
+	}
     }
 
 }
