@@ -98,7 +98,7 @@ public class MyHeap{
     }
 
     public static void main(String[]args){
-	MyHeap h = new MyHeap();
+	MyHeap h = new MyHeap(false);
 	Random r = new Random();
 	for (int i = 0; i < 15; i++){
 	    int val = r.nextInt(100)+1;
@@ -106,10 +106,11 @@ public class MyHeap{
 	    System.out.println(val);
 	}
 	System.out.println(h);
-
+	/*
 	System.out.println(h.peek());
 	System.out.println(h.remove());
 	System.out.println(h);
+	*/
 
     }
 
