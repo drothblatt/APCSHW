@@ -2,12 +2,17 @@ import java.util.*;
 import java.io.*;
 
 public class MyHeap{
-    private int[] heapArr;
-    private int size;
+    private int[] heap;
+    private final boolean heapType;
 
     public MyHeap(){  // creates a max heap
-	heapArr = new int[10];
-	size = 0;
+	heap = new int[10];
+	heapType = true;
+    }
+
+    public MyHeap(boolean isMax){
+	heap = new int[10];
+	heapType = isMax;
     }
     
     public String toString() {
@@ -17,14 +22,35 @@ public class MyHeap{
     }
     
     public int remove(){ // remove the root and return it
-	int removed = heapArr[1];
-	heapArr[1] = heapArr[size];
-	size--;
+	if (heapType) return removeMax();
+	return removeMin();
+    }
+
+    private int removeMax(){
+	int removed = heap[1];
+	heap[1] = heap[size];
+	heap[0] = heap[0] - 1; // size (decreases by 1)
+	return removed;
+    }
+
+    private int removeMin(){
+	int removed = heap[1];
+	heap[1] = heap[size];
+	heap[0] = heap[0] - 1; // size (decreases by 1)
 	return removed;
     }
 
     public void add(int x) {  // add the int to the heap
+	if (heapType) addMax(x);
+	else addMin(x);
 	size++;
+    }
+
+    private void addMax(int x){}
+    private void addMin(int x){}
+
+    public int peek(){
+	return heap[1];
     }
 
     public String name(){
