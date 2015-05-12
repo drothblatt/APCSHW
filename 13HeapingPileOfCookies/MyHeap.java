@@ -16,9 +16,12 @@ public class MyHeap{
     }
     
     public String toString() {
+	/*
 	String retStr = "";
 	for (int i = 1; i <= heap[0]; i++){}
 	return retStr;
+	*/
+	return Arrays.toString(heap);
     }
     
     public int remove(){ // remove the root and return it
@@ -46,8 +49,20 @@ public class MyHeap{
 	heap[0] = heap[0] + 1;
     }
 
-    private void addMax(int x){}
-    private void addMin(int x){}
+    private void addMax(int x){
+	if (heap[0] == 0){
+	    heap[1] = x;
+	} else{
+	    heap[heap[0]+1] = x;
+	    
+	}
+    }
+    
+    private void addMin(int x){
+    
+
+
+    }
 
     public int peek(){
 	return heap[1];
@@ -57,5 +72,13 @@ public class MyHeap{
 	return "rothblatt.david";
     }
 
+    public static void main(String[]args){
+	MyHeap h = new MyHeap();
+	h.add(17);
+	h.add(20);
+	h.add(24);
+	h.add(81);
+	System.out.println(h);
+    }
 
 }
