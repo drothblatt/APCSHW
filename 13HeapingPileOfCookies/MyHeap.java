@@ -32,6 +32,7 @@ public class MyHeap{
     private int removeMax(){
 	int removed = heap[1];
 	heap[1] = heap[heap[0]];
+	heap[heap[0]] = 0;
 	heap[0] = heap[0] - 1; // size (decreases by 1)
 	return removed;
     }
@@ -65,7 +66,12 @@ public class MyHeap{
     }
     
     private void addMin(int x){
-    
+    	if (heap[0] == 0){
+	    heap[1] = x;
+	} else{
+	    heap[heap[0]+1] = x;
+	    
+	}
 
 
     }
@@ -80,10 +86,14 @@ public class MyHeap{
 
     public static void main(String[]args){
 	MyHeap h = new MyHeap();
-	for (int i = 20; i < 90; i = i+5){
+	for (int i = 90; i > 20; i = i-5){
 	    h.add(i);
 	    System.out.println(h);
 	}
+	System.out.println(h.peek());
+	System.out.println(h.remove());
+	System.out.println(h);
+
     }
 
 }
