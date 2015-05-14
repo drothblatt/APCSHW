@@ -16,7 +16,10 @@ public class RunningMedian{
 	} else if( value < getMedian() ){
 	    maxH.add(value);
 	}
-	
+	fix();
+    }
+
+    public void fix(){
 	if( maxH.size() + 1 > minH.size() ){
 	    minH.add(maxH.remove());
 	} else if ( minH.size() + 1 > maxH.size() ) {
