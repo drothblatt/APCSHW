@@ -15,12 +15,29 @@ public class MyHeap{
     }
     
     public String toString() {
-	/*
 	String retStr = "";
-	for (int i = 1; i <= heap[0]; i++){}
+	int exp = 0;
+	int inThisRow = 0;
+        //String spaces = "";
+	for (int i = 1; i <= heap[0]; i++){
+	    retStr += heap[i] + " ";  //spaces;
+	    inThisRow++;
+	    if ( inThisRow == (int)Math.pow(2,exp) ) {
+		retStr += "\n";
+		exp++;
+		//spaces = spacing(inThisRow);
+		inThisRow = 0;
+	    }
+	}
 	return retStr;
-	*/
-	return Arrays.toString(heap);
+    }
+
+    private String spacing(int x){
+	String ans = "";
+	for (int i = 0; i < x; i++){
+	    ans += " ";
+	}
+	return ans;
     }
     
     public int remove(){ // remove the root and return it
@@ -140,9 +157,10 @@ public class MyHeap{
     public String name(){ // good
 	return "rothblatt.david";
     }
-
+    
+    /*
     public static void main(String[]args){
-	MyHeap h = new MyHeap(false);
+	MyHeap h = new MyHeap(true);
 	Random r = new Random();
 
 	h.add(32);
@@ -156,11 +174,11 @@ public class MyHeap{
 	h.add(61);
 	System.out.println(h);
 	for (int i = 0; i < 10; i++){ // last one should throw ex. 
-	    System.out.println(h.peek());
-	    System.out.println(h.remove());
+	    System.out.println("\n\n\n...");
 	    System.out.println(h);
 	}
 	
     }
+    */
 
 }
