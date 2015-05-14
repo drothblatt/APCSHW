@@ -46,7 +46,7 @@ public class MyHeap{
 	return removeMin();
     }
 
-    private int removeMax(){
+    private int removeMax(){ 
 	int removed = heap[1];
 	heap[1] = heap[heap[0]];
 	heap[heap[0]] = 0;
@@ -57,6 +57,7 @@ public class MyHeap{
     }
 
     private int removeMin(){
+	// i know this gets redundant but not enoguh time to change now 
 	int removed = heap[1];
 	heap[1] = heap[heap[0]];
 	heap[heap[0]] = 0;
@@ -158,9 +159,10 @@ public class MyHeap{
 	return "rothblatt.david";
     }
     
+    
     /*
     public static void main(String[]args){
-	MyHeap h = new MyHeap(true);
+	MyHeap h = new MyHeap(false);
 	Random r = new Random();
 
 	h.add(32);
@@ -175,10 +177,12 @@ public class MyHeap{
 	System.out.println(h);
 	for (int i = 0; i < 10; i++){ // last one should throw ex. 
 	    System.out.println("\n\n\n...");
+	    System.out.println(h.remove()+"\n");
 	    System.out.println(h);
 	}
 	
     }
     */
+    
 
 }
