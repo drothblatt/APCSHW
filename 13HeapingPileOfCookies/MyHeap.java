@@ -50,61 +50,35 @@ public class MyHeap{
 
     private void comeOnDownMax(int i){
 	if ( ((i*2)+1) < heap[0] ){
-	    if (heap[i] < heap[i*2] && heap[i] < heap[(i*2)+1]){
-		if (heap[i*2] > heap[(i*2)+1]){
-		    int temp = heap[i];
-		    heap[i] = heap[i*2];
-		    heap[i*2] = temp;
-		    comeOnDownMax(i*2);
-		} else{
-		    int temp = heap[i];
-		    heap[i] = heap[(i*2)+1];
-		    heap[(i*2)+1] = temp;
-		    comeOnDownMax( (i*2)+1 );
-		}
-	    } else{
 		if (heap[i] < heap[i*2]){
 		    int temp = heap[i];
 		    heap[i] = heap[i*2];
 		    heap[i*2] = temp;
 		    comeOnDownMax(i*2);
-		} else if (heap[i] < heap[(i*2)+1] ){
+		} 
+		if (heap[i] < heap[(i*2)+1] ){
 		    int temp = heap[i];
 		    heap[i] = heap[(i*2)+1];
 		    heap[(i*2)+1] = temp;
 		    comeOnDownMax((i*2)+1);
 		}
-	    }
 	}
     }
 
     private void comeOnDownMin(int i){
 	if ( ((i*2)+1) < heap[0] ){
-	    if (heap[i] > heap[i*2] && heap[i] > heap[(i*2)+1]){
-		if (heap[i*2] < heap[(i*2)+1]){
-		    int temp = heap[i];
-		    heap[i] = heap[i*2];
-		    heap[i*2] = temp;
-		    comeOnDownMax(i*2);
-		} else{
-		    int temp = heap[i];
-		    heap[i] = heap[(i*2)+1];
-		    heap[(i*2)+1] = temp;
-		    comeOnDownMax( (i*2)+1 );
-		}
-	    } else{
 		if (heap[i] > heap[i*2]){
 		    int temp = heap[i];
 		    heap[i] = heap[i*2];
 		    heap[i*2] = temp;
-		    comeOnDownMax(i*2);
-		} else if (heap[i] > heap[(i*2)+1] ){
+		    comeOnDownMin(i*2);
+		} 
+		if (heap[i] > heap[(i*2)+1] ){
 		    int temp = heap[i];
 		    heap[i] = heap[(i*2)+1];
 		    heap[(i*2)+1] = temp;
-		    comeOnDownMax((i*2)+1);
+		    comeOnDownMin((i*2)+1);
 		}
-	    }
 	}
     }
 
@@ -159,12 +133,16 @@ public class MyHeap{
 	return heap[1];
     }
 
+    public boolean isEmpty(){
+	return (heap[0] == 0);
+    }
+
     public String name(){ // good
 	return "rothblatt.david";
     }
 
     public static void main(String[]args){
-	MyHeap h = new MyHeap(true);
+	MyHeap h = new MyHeap(false);
 	Random r = new Random();
 
 	h.add(32);
@@ -177,7 +155,7 @@ public class MyHeap{
 	h.add(42);
 	h.add(61);
 	System.out.println(h);
-	for (int i = 0; i < 9; i++){
+	for (int i = 0; i < 10; i++){ // last one should throw ex. 
 	    System.out.println(h.peek());
 	    System.out.println(h.remove());
 	    System.out.println(h);
