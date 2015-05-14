@@ -14,6 +14,7 @@ public class MyHeap{
 	heapType = isMax;
     }
     
+    /*
     public String toString() {
 	String retStr = "";
 	int exp = 0;
@@ -30,6 +31,11 @@ public class MyHeap{
 	    }
 	}
 	return retStr;
+    }
+    */
+
+    public String toString(){
+        return Arrays.toString(heap);
     }
 
     private String spacing(int x){
