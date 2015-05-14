@@ -24,6 +24,7 @@ public class MyHeap{
     }
     
     public int remove(){ // remove the root and return it
+	if (heap[0] == 0) throw new NoSuchElementException("heap is empty.");
 	if (heapType) return removeMax();
 	return removeMin();
     }
@@ -154,6 +155,7 @@ public class MyHeap{
     }
 
     public int peek(){ // good
+	if (heap[0] == 0) throw new NoSuchElementException("heap is empty.");
 	return heap[1];
     }
 
