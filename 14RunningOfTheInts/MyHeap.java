@@ -86,6 +86,11 @@ public class MyHeap{
 		    heap[(i*2)+1] = temp;
 		    comeOnDownMax((i*2)+1);
 		}
+	} if ( i*2 < heap[0] && heap[i] < heap[i*2] ){
+	    int temp = heap[i];
+	    heap[i] = heap[i*2];
+	    heap[i*2] = temp;
+	    comeOnDownMin(i*2);
 	}
     }
 
