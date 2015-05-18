@@ -23,9 +23,9 @@ public class RunningMedian{
     }
 
     public void fixIt(){
-	if( maxH.size() - 1 > minH.size() ){
+	if( maxH.size() - 1 > minH.size() ){ // maxH has greater than one int more than minH
 	    minH.add(maxH.remove());
-	} else if ( minH.size() - 1 > maxH.size() ) {
+	} else if ( minH.size() - 1 > maxH.size() ) { //minH has greater than one int more than maxH
 	    maxH.add(minH.remove());
 	}
     }
@@ -41,7 +41,7 @@ public class RunningMedian{
 	return -1;
     }
 
-    public String toString(){
+    public String toString(){ // for more simplistic viewing and analyzing purposes
 	String retStr = ""; 
 	retStr += "\n" + "maxH: " + maxH + "\n";
 	retStr += "minH: " + minH + "\n";
@@ -61,11 +61,18 @@ public class RunningMedian{
 	    r.add(i);
 	    System.out.println(r.toString());
 	}
-	System.out.println(".....\n.....");
+	System.out.println("...........\n...........\n...........");
        
 	for (int i = 8; i > 0; i--){
 	    s.add(i);
 	    System.out.println(s.toString());
+	}
+
+	System.out.println("...........\n...........\n...........");
+
+	for (int i = 8; i > 0; i--){
+	    r.add(i);
+	    System.out.println(r.toString());
 	}
     }
     
