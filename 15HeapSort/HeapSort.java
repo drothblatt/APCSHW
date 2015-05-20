@@ -13,7 +13,7 @@ public class HeapSort{
     }
     
     public static void moveDown(int[] a, int i, int size){
-	if ( ((i*2)+2) < size ){
+	if ( ((i*2)+2) < size ){ // tailored, heap-sort version of ComeOnDownMax from MyHeap
 		if (a[i] < a[i*2]){
 		    swap(a, i, (i*2)+1);
 		    moveDown(a, (i*2)+1, size);
