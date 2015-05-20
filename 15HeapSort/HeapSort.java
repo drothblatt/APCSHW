@@ -2,6 +2,7 @@ import java.util.*;
 
 public class HeapSort{
 
+
     // heapify
 
     private static void heapify(int[] a){
@@ -46,16 +47,27 @@ public class HeapSort{
     // accessable, overarching sort method
 
     public static void heapsort(int[] a){
-	heapify(a); // part 1 of heapsort, altering array to be a psuedo-heap
-	heapToSort(a); // part 2 of heapsort, moving max vals to the back one at a time
+	heapify(a); // part 1 of heapsort = altering array to be a psuedo-heap
+	heapToSort(a); // part 2 of heapsort =  moving max vals to the back one at a time
     }
 
+
+
+
+
+
+
+
+    /*
     public static void main(String[]args){
 	int[] x = {3, 9, 1, 6, 5, 8, 10, 2, 13, 4};
+
 	System.out.println(Arrays.toString(x));
 	heapsort(x);
 	System.out.println(Arrays.toString(x));
     }
+    */
+    
 
 
 
